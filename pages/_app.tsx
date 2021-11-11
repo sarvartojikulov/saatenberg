@@ -3,7 +3,6 @@ import "tailwindcss/tailwind.css";
 import type { AppProps } from "next/app";
 import React, { Suspense } from "react";
 import Head from "next/head";
-import { appWithTranslation } from "next-i18next";
 import Navbar from "../components/Navbar/Navbar";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -25,4 +24,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default appWithTranslation(MyApp);
+export default MyApp;
