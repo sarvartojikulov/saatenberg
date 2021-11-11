@@ -1,19 +1,19 @@
 import type { NextPage } from "next";
-import styles from "../styles/Home.module.css";
+import React from "react";
 import useTranslation from "next-translate/useTranslation";
 
-const Home: NextPage = () => {
+const about: NextPage = () => {
   const { t } = useTranslation();
   return (
     <div className="flex w-full h-5/6">
       <div
-        className="bg-blue-400 w-full h-full flex justify-center items-center"
+        className="bg-yellow-300 w-full h-full flex justify-center items-center"
         style={{ scrollSnapAlign: "start" }}
       >
-        <h1 className={styles.title}>{t("common:welcome")}</h1>
+        <h1>{t("about:title")}</h1>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default about;
