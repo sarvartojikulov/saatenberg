@@ -9,12 +9,23 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="w-full h-1/6 flex items-center bg-white">
-        <div className="flex justify-between items-center mr-auto">
+      <div
+        className={classNames(
+          "h-full items-center grid grid-cols-3 gap-x-5",
+          "md:grid-cols-12",
+          "lg:col-span-12"
+        )}
+      >
+        <div
+          className={classNames(
+            "flex items-center col-span-2 md:col-span-6",
+            ""
+          )}
+        >
           <h1>saatenberg</h1>
           <h1 className="hidden lg:block ml-5">page</h1>
         </div>
-        <div className="hidden lg:flex justify-between items-center">
+        <div className="hidden lg:flex col-span-5 justify-between items-center">
           <div className="z-10">searchbar</div>
           <ul className="ml-24 z-10">
             {router.locales?.map((locale) => (
@@ -26,16 +37,13 @@ const Navbar = () => {
             ))}
           </ul>
         </div>
-        <h1
-          className="ml-24 cursor-pointer"
-          onClick={() => setToggleMenu(true)}
-        >
+        <h1 className="cursor-pointer" onClick={() => setToggleMenu(true)}>
           menu
         </h1>
       </div>
       <div
         className={classNames(
-          "fixed bg-green-400 w-full h-full top-0 left-0 transform transition-transform flex flex-col",
+          "fixed bg-green-400 w-full h-full flex flex-col transform transition-transform top-0 left-0",
           "lg:w-3/5 lg:left-full lg:justify-start lg:items-end lg:py-14 lg:px-12",
           {
             "translate-x-full": !toggleMenu,
