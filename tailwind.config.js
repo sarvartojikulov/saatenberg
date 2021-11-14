@@ -5,6 +5,9 @@ module.exports = {
     extend: {
       gridTemplateRows:{
         "wrapper": "100px 1fr"
+      },
+      maxWidth:{
+        "1440" : "1440px"
       }
     },
   },

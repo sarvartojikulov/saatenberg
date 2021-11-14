@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { useRouter } from "next/dist/client/router";
 import React, { useState } from "react";
 import Link from "next/link";
+import Searchbar from "../Searchbar";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -16,28 +17,40 @@ const Navbar = () => {
           "lg:col-span-12"
         )}
       >
+        <h1 className={classNames("col-span-2 cursor-pointer", "", "")}>
+          saatenberg
+        </h1>
+        <h1 className={classNames("hidden ", "", "lg:block col-span-2")}>
+          page
+        </h1>
         <div
           className={classNames(
-            "flex items-center col-span-2 md:col-span-6",
-            ""
+            "hidden z-10",
+            "",
+            "lg:block col-start-7 col-end-10"
           )}
         >
-          <h1>saatenberg</h1>
-          <h1 className="hidden lg:block ml-5">page</h1>
+          <Searchbar />
         </div>
-        <div className="hidden lg:flex col-span-5 justify-between items-center">
-          <div className="z-10">searchbar</div>
-          <ul className="ml-24 z-10">
-            {router.locales?.map((locale) => (
-              <li key={locale}>
-                <Link href={router.asPath} locale={locale}>
-                  <a>{locale}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <h1 className="cursor-pointer" onClick={() => setToggleMenu(true)}>
+        <ul
+          className={classNames(
+            "hidden z-10",
+            "",
+            "lg:block col-start-11 col-span-1"
+          )}
+        >
+          {router.locales?.map((locale) => (
+            <li key={locale}>
+              <Link href={router.asPath} locale={locale}>
+                <a>{locale}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <h1
+          className="cursor-pointer col-start-12"
+          onClick={() => setToggleMenu(true)}
+        >
           menu
         </h1>
       </div>
