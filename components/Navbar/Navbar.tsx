@@ -27,7 +27,7 @@ const Navbar = () => {
         className={classNames(
           "h-full items-center grid grid-cols-3 gap-x-5",
           "md:grid-cols-12",
-          "lg:col-span-12 lg:text-3xl"
+          "lg:col-span-12 lg:text-3xl relative"
         )}
       >
         <h1
@@ -72,50 +72,81 @@ const Navbar = () => {
         </h1>
       </div>
       <div
-        style={{ backgroundColor: bgColor }}
         className={classNames(
-          "fixed w-full h-full grid grid-cols-7 gap-x-5 transform transition-transform top-0 left-0",
-          "lg:w-3/5 lg:left-full pr-12 pt-14",
+          "fixed top-0 right-0 w-screen h-screen transform transition-transform translate-x-0",
           {
             "translate-x-full": !toggleMenu,
-            "translate-x-0 lg:-translate-x-full left-0": toggleMenu,
+            "translate-x-0": toggleMenu,
           }
         )}
       >
+        {/* whole screen */}
         <div
-          className={classNames("", "", "col-start-6 col-span-2 lg:text-3xl")}
+          className={classNames(
+            "h-screen grid grid-cols-1 gap-x-5 max-w-1440 mx-auto lg:px-6",
+            "",
+            "lg:grid-cols-12"
+          )}
         >
-          <h1
-            className="lg:mb-32 cursor-pointer text-right"
+          {/* grid area */}
+          <div
             onClick={() => setToggleMenu(false)}
+            className={classNames(
+              "hidden",
+              "",
+              " lg:block lg:col-span-5 lg:h-full"
+            )}
           >
-            x
-          </h1>
-          <ul className="space-y-4 text-right">
-            <li onClick={() => setToggleMenu(false)}>
-              <Link href="/">
-                <a>home</a>
-              </Link>
-            </li>
-            <li>
-              <Accordion closeNavbar={() => setToggleMenu(false)} />
-            </li>
-            <li onClick={() => setToggleMenu(false)}>
-              <Link href="/services">
-                <a>services</a>
-              </Link>
-            </li>
-            <li onClick={() => setToggleMenu(false)}>
-              <Link href="/about">
-                <a>About</a>
-              </Link>
-            </li>
-            <li onClick={() => setToggleMenu(false)}>
-              <Link href="/contact">
-                <a>contact</a>
-              </Link>
-            </li>
-          </ul>
+            {/* white space */}
+          </div>
+          <div
+            className={classNames(
+              "col-span-1 grid grid-cols-1",
+              "",
+              "lg:col-span-7 lg:grid-cols-7"
+            )}
+          >
+            <div className="w-full h-full z-50 relative col-start-7">
+              {/* navbar */}
+              <h1
+                className="lg:mb-32 cursor-pointer text-right"
+                onClick={() => setToggleMenu(false)}
+              >
+                x
+              </h1>
+              <ul className="space-y-4 text-right">
+                <li onClick={() => setToggleMenu(false)}>
+                  <Link href="/">
+                    <a>home</a>
+                  </Link>
+                </li>
+                <li>
+                  <Accordion closeNavbar={() => setToggleMenu(false)} />
+                </li>
+                <li onClick={() => setToggleMenu(false)}>
+                  <Link href="/services">
+                    <a>services</a>
+                  </Link>
+                </li>
+                <li onClick={() => setToggleMenu(false)}>
+                  <Link href="/about">
+                    <a>About</a>
+                  </Link>
+                </li>
+                <li onClick={() => setToggleMenu(false)}>
+                  <Link href="/contact">
+                    <a>contact</a>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div
+              className="absolute top-0 w-full h-full z-0 bg-green-300"
+              onClick={() => console.log("y")}
+            >
+              {/* absolute background */}
+            </div>
+          </div>
         </div>
       </div>
     </>
