@@ -1,12 +1,26 @@
 import classNames from "classnames";
 import { useRouter } from "next/dist/client/router";
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import React, { useEffect, useRef, useState } from "react";
+import Accordion from "./Accordion";
 import Searchbar from "../Searchbar";
 
+let colors = [
+  "rgba(83, 94, 12, 0.75)",
+  "#C8C7BA",
+  "#9E4B4B",
+  "#D3CF56",
+  "#E5E5E5;",
+];
+
 const Navbar = () => {
-  const [toggleMenu, setToggleMenu] = useState(true);
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [bgColor, setBgColor] = useState("#C8C7BA");
   let router = useRouter();
+  useEffect(() => {
+    if (toggleMenu)
+      setBgColor(colors[Math.floor(Math.random() * colors.length)]);
+  }, [toggleMenu]);
   return (
     <>
       <div
@@ -58,8 +72,9 @@ const Navbar = () => {
         </h1>
       </div>
       <div
+        style={{ backgroundColor: bgColor }}
         className={classNames(
-          "fixed bg-green-400 w-full h-full grid grid-cols-7 gap-x-5 transform transition-transform top-0 left-0",
+          "fixed w-full h-full grid grid-cols-7 gap-x-5 transform transition-transform top-0 left-0",
           "lg:w-3/5 lg:left-full pr-12 pt-14",
           {
             "translate-x-full": !toggleMenu,
@@ -82,10 +97,8 @@ const Navbar = () => {
                 <a>home</a>
               </Link>
             </li>
-            <li onClick={() => setToggleMenu(false)}>
-              <Link href="/products">
-                <a>products</a>
-              </Link>
+            <li>
+              <Accordion closeNavbar={() => setToggleMenu(false)} />
             </li>
             <li onClick={() => setToggleMenu(false)}>
               <Link href="/services">
