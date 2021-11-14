@@ -1,27 +1,30 @@
 import classNames from "classnames";
 import { useRouter } from "next/dist/client/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Searchbar from "../Searchbar";
 
 const Navbar = () => {
-  const [toggleMenu, setToggleMenu] = useState(false);
+  const [toggleMenu, setToggleMenu] = useState(true);
   let router = useRouter();
-
   return (
     <>
       <div
         className={classNames(
           "h-full items-center grid grid-cols-3 gap-x-5",
           "md:grid-cols-12",
-          "lg:col-span-12"
+          "lg:col-span-12 lg:text-3xl"
         )}
       >
-        <h1 className={classNames("col-span-2 cursor-pointer", "", "")}>
-          saatenberg
+        <h1
+          className={classNames("col-span-2 cursor-pointer font-bold", "", "")}
+        >
+          <Link href="/">
+            <a>saatenberg</a>
+          </Link>
         </h1>
         <h1 className={classNames("hidden ", "", "lg:block col-span-2")}>
-          page
+          {router.asPath === "/" ? "home" : router.asPath.replace("/", "")}
         </h1>
         <div
           className={classNames(
@@ -56,47 +59,51 @@ const Navbar = () => {
       </div>
       <div
         className={classNames(
-          "fixed bg-green-400 w-full h-full flex flex-col transform transition-transform top-0 left-0",
-          "lg:w-3/5 lg:left-full lg:justify-start lg:items-end lg:py-14 lg:px-12",
+          "fixed bg-green-400 w-full h-full grid grid-cols-7 gap-x-5 transform transition-transform top-0 left-0",
+          "lg:w-3/5 lg:left-full pr-12 pt-14",
           {
             "translate-x-full": !toggleMenu,
             "translate-x-0 lg:-translate-x-full left-0": toggleMenu,
           }
         )}
       >
-        <h1
-          className="lg:mb-32 cursor-pointer"
-          onClick={() => setToggleMenu(false)}
+        <div
+          className={classNames("", "", "col-start-6 col-span-2 lg:text-3xl")}
         >
-          x
-        </h1>
-        <ul className="space-y-4 text-right">
-          <li onClick={() => setToggleMenu(false)}>
-            <Link href="/">
-              <a>home</a>
-            </Link>
-          </li>
-          <li onClick={() => setToggleMenu(false)}>
-            <Link href="/products">
-              <a>products</a>
-            </Link>
-          </li>
-          <li onClick={() => setToggleMenu(false)}>
-            <Link href="/services">
-              <a>services</a>
-            </Link>
-          </li>
-          <li onClick={() => setToggleMenu(false)}>
-            <Link href="/about">
-              <a>About</a>
-            </Link>
-          </li>
-          <li onClick={() => setToggleMenu(false)}>
-            <Link href="/contact">
-              <a>contact</a>
-            </Link>
-          </li>
-        </ul>
+          <h1
+            className="lg:mb-32 cursor-pointer text-right"
+            onClick={() => setToggleMenu(false)}
+          >
+            x
+          </h1>
+          <ul className="space-y-4 text-right">
+            <li onClick={() => setToggleMenu(false)}>
+              <Link href="/">
+                <a>home</a>
+              </Link>
+            </li>
+            <li onClick={() => setToggleMenu(false)}>
+              <Link href="/products">
+                <a>products</a>
+              </Link>
+            </li>
+            <li onClick={() => setToggleMenu(false)}>
+              <Link href="/services">
+                <a>services</a>
+              </Link>
+            </li>
+            <li onClick={() => setToggleMenu(false)}>
+              <Link href="/about">
+                <a>About</a>
+              </Link>
+            </li>
+            <li onClick={() => setToggleMenu(false)}>
+              <Link href="/contact">
+                <a>contact</a>
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </>
   );
