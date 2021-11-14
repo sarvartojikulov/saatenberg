@@ -3,6 +3,9 @@
     "defaultLocale": "en",
     "pages": {
       "*" : ["common"],
-      "/about": ["about"]
+      "/about": ["about"],
+      "rgx:^/products/?[a-z]*": ["products"],
+      "/services": ["services"],
+      "/contact": ["contact"]
     }
 }
