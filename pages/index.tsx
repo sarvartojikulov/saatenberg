@@ -5,12 +5,12 @@ import useTranslation from "next-translate/useTranslation";
 const Home: NextPage = () => {
   const { t } = useTranslation();
   return (
-    <div className="flex w-full h-5/6">
+    <div className="grid grid-cols-1">
       <div
         className="bg-blue-400 w-full h-full flex justify-center items-center"
         style={{ scrollSnapAlign: "start" }}
       >
-        <h1 className={styles.title}>{t("common:welcome")}</h1>
+        <h1 className="text-lg md:text-5xl font-bold">{t("common:welcome")}</h1>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { useRouter } from "next/dist/client/router";
 import React, { useState } from "react";
 import Link from "next/link";
+import Searchbar from "../Searchbar";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -9,25 +10,45 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="w-full h-1/6 flex items-center bg-white">
-        <div className="flex justify-between items-center mr-auto">
-          <h1>saatenberg</h1>
-          <h1 className="hidden lg:block ml-5">page</h1>
+      <div
+        className={classNames(
+          "h-full items-center grid grid-cols-3 gap-x-5",
+          "md:grid-cols-12",
+          "lg:col-span-12"
+        )}
+      >
+        <h1 className={classNames("col-span-2 cursor-pointer", "", "")}>
+          saatenberg
+        </h1>
+        <h1 className={classNames("hidden ", "", "lg:block col-span-2")}>
+          page
+        </h1>
+        <div
+          className={classNames(
+            "hidden z-10",
+            "",
+            "lg:block col-start-7 col-end-10"
+          )}
+        >
+          <Searchbar />
         </div>
-        <div className="hidden lg:flex justify-between items-center">
-          <div className="z-10">searchbar</div>
-          <ul className="ml-24 z-10">
-            {router.locales?.map((locale) => (
-              <li key={locale}>
-                <Link href={router.asPath} locale={locale}>
-                  <a>{locale}</a>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul
+          className={classNames(
+            "hidden z-10",
+            "",
+            "lg:block col-start-11 col-span-1"
+          )}
+        >
+          {router.locales?.map((locale) => (
+            <li key={locale}>
+              <Link href={router.asPath} locale={locale}>
+                <a>{locale}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
         <h1
-          className="ml-24 cursor-pointer"
+          className="cursor-pointer col-start-12"
           onClick={() => setToggleMenu(true)}
         >
           menu
@@ -35,7 +56,7 @@ const Navbar = () => {
       </div>
       <div
         className={classNames(
-          "fixed bg-green-400 w-full h-full top-0 left-0 transform transition-transform flex flex-col",
+          "fixed bg-green-400 w-full h-full flex flex-col transform transition-transform top-0 left-0",
           "lg:w-3/5 lg:left-full lg:justify-start lg:items-end lg:py-14 lg:px-12",
           {
             "translate-x-full": !toggleMenu,
