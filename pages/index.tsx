@@ -1,12 +1,14 @@
 import type { NextPage } from "next";
-import styles from "../styles/Home.module.css";
 import useTranslation from "next-translate/useTranslation";
 import classNames from "classnames";
+import { motion } from "framer-motion";
+import React from "react";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   const { t } = useTranslation();
   return (
-    <div
+    <motion.div
       className={classNames(
         "grid grid-cols-3 auto-rows-min gap-x-5",
         "",
@@ -30,28 +32,44 @@ const Home: NextPage = () => {
           "h-80 lg:col-span-12 grid grid-cols-2 gap-x-5"
         )}
       >
-        <div className={classNames("", "", "relative bg-pink-500")}>
-          <img src="" alt="" />
-          <h1
-            className={
-              "mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 font-bold text-4xl"
-            }
-          >
-            CONVENTIONAL
-          </h1>
-        </div>
-        <div className={classNames("", "", " relative bg-yellow-300")}>
-          <img src="" alt="" />
-          <h1
-            className={
-              "mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 font-bold text-4xl"
-            }
-          >
-            ORGANIC
-          </h1>
-        </div>
+        <motion.div
+          exit={{ x: -1000 }}
+          className={classNames("", "", "relative bg-pink-500")}
+          transition={{ duration: 1, type: "spring" }}
+        >
+          <Link href="/about">
+            <a>
+              <img src="" alt="" />
+              <h1
+                className={
+                  "mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 font-bold text-4xl"
+                }
+              >
+                CONVENTIONAL
+              </h1>
+            </a>
+          </Link>
+        </motion.div>
+        <motion.div
+          exit={{ x: 1000 }}
+          transition={{ duration: 1, type: "spring" }}
+          className={classNames("", "", " relative bg-yellow-300")}
+        >
+          <Link href="/about">
+            <a>
+              <img src="" alt="" />
+              <h1
+                className={
+                  "mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 font-bold text-4xl"
+                }
+              >
+                ORGANIC
+              </h1>
+            </a>
+          </Link>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

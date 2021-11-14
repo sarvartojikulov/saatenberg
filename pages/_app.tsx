@@ -5,8 +5,10 @@ import React, { Suspense } from "react";
 import Head from "next/head";
 import Navbar from "../components/Navbar/Navbar";
 import classNames from "classnames";
-
+import { AnimatePresence } from "framer-motion";
+import { useRouter } from "next/dist/client/router";
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -25,7 +27,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         )}
       >
         <Navbar />
-        <Component {...pageProps} />
+        <AnimatePresence exitBeforeEnter>
+          <Component {...pageProps} key={router.route} />
+        </AnimatePresence>
       </div>
     </>
   );
