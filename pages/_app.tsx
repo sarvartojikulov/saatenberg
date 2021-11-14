@@ -21,9 +21,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <div
         className={classNames(
-          "w-screen h-screen container grid grid-cols-1 grid-rows-wrapper max-w-1440 relative px-6 2xl:mx-auto",
+          "w-screen h-screen container grid grid-cols-1 grid-rows-wrapper max-w-1440 relative px-6 ",
           "md:grid-cols-1 md:px-12",
-          ""
+          "2xl:mx-auto"
         )}
       >
         <Navbar />
