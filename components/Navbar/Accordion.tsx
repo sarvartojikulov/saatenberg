@@ -27,12 +27,12 @@ const Accordion: React.FC<AccordionProps> = ({ closeNavbar }) => {
               },
             }}
             exit={{ opacity: 0 }}
-            className="flex text-lg flex-col"
+            className="flex text-lg flex-col lg:text-3xl mt-4"
           >
-            <Link href="/products">
+            <Link href="/products/organic">
               <a onClick={closeNavbar}>ORGANIC</a>
             </Link>
-            <Link href="/products">
+            <Link href="/products/conventional">
               <a onClick={closeNavbar}>CONVENTIONAL</a>
             </Link>
           </motion.div>
