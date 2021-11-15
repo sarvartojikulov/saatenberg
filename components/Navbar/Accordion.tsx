@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import classNames from "classnames";
+import { useRouter } from "next/dist/client/router";
 
 interface AccordionProps {
   closeNavbar: () => void;
@@ -9,12 +10,19 @@ interface AccordionProps {
 
 const Accordion: React.FC<AccordionProps> = ({ closeNavbar }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <motion.div>
       <AnimatePresence>
         <motion.div key="question" onClick={() => setIsOpen(!isOpen)}>
-          <h1 className={classNames("cursor-pointer")}>products</h1>
+          <h1
+            className={classNames("cursor-pointer", {
+              "text-white": router.asPath.includes("/products"),
+            })}
+          >
+            products
+          </h1>
         </motion.div>
         {isOpen && (
           <motion.div

@@ -38,7 +38,7 @@ const Navbar = () => {
           </Link>
         </h1>
         <h1 className={classNames("hidden ", "", "lg:block col-span-2")}>
-          {router.asPath === "/" ? "home" : router.asPath.replace("/", "")}
+          {router.asPath === "/" ? "home" : router.asPath.split("/")[1]}
         </h1>
         <div
           className={classNames(
