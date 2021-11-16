@@ -7,6 +7,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextTranslate = require("next-translate")
 module.exports = {
   reactStrictMode: true,
+  ...withBundleAnalyzer({}),
+  
+  // always at the end
   ...nextTranslate(),
-  ...withBundleAnalyzer({})
 }
