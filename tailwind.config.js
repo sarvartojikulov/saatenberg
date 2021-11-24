@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateRows:{
-        "wrapper": "130px 1fr"
+        "wrapper-sm": "48px 1fr",
+        "wrapper-md": "56px 1fr"
       },
       maxWidth:{
         "1440" : "1440px"
