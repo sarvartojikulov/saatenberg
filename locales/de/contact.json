@@ -1,3 +1,8 @@
 {
-    "title" : "Kontakt"
+    "title" : "Kontakt",
+    "input_name": "Name",
+    "input_company": "Unternehmen",
+    "input_quantity": "Anzahl",
+    "input_firmBID": "firm bid",
+    "input_message": "Nachricht"
   }
