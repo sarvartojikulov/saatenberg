@@ -3,9 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontSize: {
-      sm: "20px",
-      md: "25px",
-      lg: "30px"
+      "sm": "20px",
+      "md": "25px",
+      "lg": "30px"
     },
     extend: {
       gridTemplateRows:{
