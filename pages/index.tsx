@@ -29,7 +29,7 @@ const Home: NextPage = () => {
         className={classNames(
           "",
           "",
-          "h-80 lg:col-span-12 grid grid-cols-2 gap-x-5"
+          "h-80 lg:col-span-12 grid grid-cols-2 gap-x-5 relative z-0"
         )}
       >
         <motion.div
@@ -52,6 +52,7 @@ const Home: NextPage = () => {
         </motion.div>
         <motion.div
           exit={{ x: 1000 }}
+          initial={{ z: 0 }}
           transition={{ duration: 1, type: "spring" }}
           className={classNames("", "", " relative bg-yellow-300")}
         >

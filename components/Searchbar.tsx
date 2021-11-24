@@ -28,7 +28,7 @@ const Searchbar = () => {
             cy="11.1427"
             r="9.64268"
             stroke="black"
-            stroke-width="3"
+            strokeWidth="3"
           />
           <line
             x1="7.72765"
