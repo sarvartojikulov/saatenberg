@@ -25,7 +25,7 @@ const Navbar = () => {
     <>
       <div
         className={classNames(
-          "h-full items-center grid grid-cols-3 gap-x-5",
+          "h-full items-end grid grid-cols-3 grid-rows-1 gap-x-5",
           "md:grid-cols-12",
           "lg:col-span-12 lg:text-3xl relative"
         )}
