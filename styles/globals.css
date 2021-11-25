@@ -24,3 +24,7 @@ a {
   color: pointer;
   text-decoration: none;
 }
+
+h1 {
+  line-height: 24px;
+}
