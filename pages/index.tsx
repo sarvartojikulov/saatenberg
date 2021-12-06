@@ -10,39 +10,35 @@ const Home: NextPage = () => {
   return (
     <motion.div
       className={classNames(
-        "grid grid-cols-3 auto-rows-min gap-x-5",
-        "",
-        "pt-32 lg:grid-cols-12 gap-y-16"
+        "grid grid-cols-4 auto-rows-min gap-5",
+        "md:text-md md:grid-cols-8 md:mt-8",
+        "lg:grid-cols-12 lg:gap-y-16"
       )}
     >
-      <h1 className={classNames("", "", "lg:col-span-6")}>
-        One of the leading wholesaler in Europe. We trade with seeds, spices and
-        feeds worldwide.
+      <h1 className={classNames("col-span-full normal-case", "", "lg:col-span-6")}>
+        Saatenberg has been trading food products all over the world for 10 years.
       </h1>
-      <h1 className={classNames("", "", "lg:col-span-6")}>
-        The company Saatenberg Handels & Consulting GmbH is continuing to pursue
-        a long way of development and steady improvement. With more than a
-        decade of presence in the market of spices, grains and oilseeds, we
-        confidently claim to rank among the best in the industry.{" "}
+      <h1 className={classNames("col-span-full normal-case", "", "lg:col-span-6")}>
+        Saatenberg's main focus is on the grain, spice and animal feed trade. Also, dried vegetables and herbs, nuts and various oils are regularly present in our turnover. It's about the details - our philosophy.
       </h1>
       <div
         className={classNames(
+          "col-span-full grid grid-cols-1 gap-5",
           "",
-          "",
-          "h-80 lg:col-span-12 grid grid-cols-2 gap-x-5 relative z-0"
+          "lg:col-span-12 lg:grid-cols-12"
         )}
       >
         <motion.div
           exit={{ x: -1000 }}
-          className={classNames("", "", "relative bg-pink-500")}
+          className={classNames("bg-pink-800 text-white h-44", "md:h-60", "lg:col-span-6 lg:h-96")}
           transition={{ duration: 1, type: "spring" }}
         >
-          <Link href="/about">
+          <Link href="/products/conventional">
             <a>
               <img src="" alt="" />
               <h1
                 className={
-                  "mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 font-bold text-4xl"
+                  "h-full flex items-center justify-center font-bold"
                 }
               >
                 CONVENTIONAL
@@ -54,14 +50,14 @@ const Home: NextPage = () => {
           exit={{ x: 1000 }}
           initial={{ z: 0 }}
           transition={{ duration: 1, type: "spring" }}
-          className={classNames("", "", " relative bg-yellow-300")}
+          className={classNames("bg-yellow-700 text-white h-44", "md:h-60", "lg:col-span-6 lg:h-96")}
         >
-          <Link href="/about">
+          <Link href="/products/organic">
             <a>
               <img src="" alt="" />
               <h1
                 className={
-                  "mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 font-bold text-4xl"
+                  "h-full flex items-center justify-center font-bold"
                 }
               >
                 ORGANIC

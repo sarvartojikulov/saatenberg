@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div
         className={classNames(
           "w-screen h-screen container grid grid-cols-1 grid-rows-wrapper max-w-1440 relative px-6 2xl:mx-auto",
-          "md:grid-cols-1 md:px-12",
+          "md:grid-cols-1",
           ""
         )}
       >
