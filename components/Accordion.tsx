@@ -1,29 +1,31 @@
 import classNames from "classnames";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 interface AccordionProps {
-  item: any;
+  product: any;
   index: number;
   isOpen: boolean;
   handleHeader: (index: any) => void;
   handleInfoBlock: (value: boolean) => void;
-  z_index: number;
 }
 
 // Opacity at the end of div
 // https://css-tricks.com/text-fade-read-more/
 
 //https://github.com/ALapina/FAQ-Accordion-Card-React/blob/master/src/components/Accordion.js
+
 const Accordion: React.FC<AccordionProps> = ({
-  item,
+  product: item,
   index,
   handleHeader,
   handleInfoBlock,
   isOpen,
-  z_index,
 }) => {
   const [activeIB_index, setactiveIB_index] = useState<number | null>(null);
+  const [height, setHeight] = useState<number | undefined>(0);
+  const content = useRef<HTMLDivElement>(null);
+
   const toggleInfoBlock = (index: number) => {
     if (index !== activeIB_index) {
       handleInfoBlock(false);
@@ -34,9 +36,17 @@ const Accordion: React.FC<AccordionProps> = ({
     }
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      setHeight(content.current ? content.current?.scrollHeight + 10 : 0);
+    } else {
+      setHeight(0);
+    }
+  }, [isOpen]);
+
   const { name, items, id } = item;
   return (
-    <div className={classNames("relative transition-all", `z-${z_index}`)}>
+    <div className={classNames("relative transition-all")}>
       <div
         key="header"
         onClick={() => {
@@ -45,10 +55,9 @@ const Accordion: React.FC<AccordionProps> = ({
         }}
       >
         <h1
-          className={classNames(
-            "cursor-pointer text-sm md:text-md lg:text-lg",
-            { "font-bold": isOpen }
-          )}
+          className={classNames("cursor-pointer text-sm md:text-md", {
+            "font-bold": isOpen,
+          })}
         >
           <Link href={`/products/organic?productID=` + id} passHref>
             {name}
@@ -56,12 +65,15 @@ const Accordion: React.FC<AccordionProps> = ({
         </h1>
       </div>
       <div
+        ref={content}
         className={classNames(
-          "flex flex-col transition-all pl-3",
-          "lg:space-y-3",
-          { "h-0 opacity-0 mt-0": !isOpen },
-          { "h-auto opacity-100 mt-0": isOpen }
+          "flex flex-col overflow-y-hidden transition-all pl-3 mt-0",
+          "lg:space-y-2",
+          { "mt-3 pb-1.5": isOpen }
         )}
+        style={{
+          maxHeight: `${height}px`,
+        }}
       >
         {items.map((product: any, index: any) => {
           return (
@@ -72,10 +84,10 @@ const Accordion: React.FC<AccordionProps> = ({
             >
               <h1
                 className={classNames(
-                  "cursor-pointer text-sm md:text-md lg:text-lg leading-6 capitalize",
-                  "lg:mt-4",
-                  { "h-0 opacity-0": !isOpen },
-                  { "h-auto opacity-100": isOpen }
+                  "cursor-pointer text-sm md:text-md capitalize",
+                  "",
+                  { "opacity-0": !isOpen },
+                  { "opacity-100": isOpen }
                 )}
                 onClick={() => {
                   toggleInfoBlock(index);

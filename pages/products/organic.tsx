@@ -4,64 +4,72 @@ import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useMemo, useState } from "react";
 import Accordion from "../../components/Accordion";
 import Button from "../../components/Button";
+import Calendar from "../../components/Calendar";
 import InfoBlock from "../../components/InfoBlock";
 import LeftSide from "../../components/PageWrapper/LeftSide";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import RightSide from "../../components/PageWrapper/RightSide";
-import ProductInfo, { Item } from "../../components/ProductInfo";
+import ProductInfo from "../../components/ProductInfo";
+import { getCalendarData, Item, Product } from "../../utils/calendar";
 import data from "./conventional_products.json";
 
 interface organicProps {
-  query_params?: any;
+  product: Product;
+  products_list: Product[];
+  calendar?: any;
+  productItem: Item | null;
 }
 
-type Product = {
-  name: string;
-  id: number;
-  items: Item[];
-};
-
-const Organic: NextPage<organicProps> = ({ query_params }) => {
+const Organic: NextPage<organicProps> = ({
+  product,
+  calendar,
+  productItem,
+  products_list,
+}) => {
   const [infoBlockToggle, setInfoBlockToggle] = useState<boolean>(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [productItem, setProductItem] = useState<Item | null>(null);
   const router = useRouter();
   const { t } = useTranslation();
   const products: Product[] = useMemo(() => {
-    return data.conv_products;
+    return products_list;
   }, []);
-
   useEffect(() => {
-    products.map(({ id, items }) => {
-      let { productID, itemID } = query_params;
-      if (id == productID) {
-        items.map((el) => el.id == itemID && setProductItem(el));
-      }
-    });
-  }, [query_params.itemID]);
-
+    const { productID } = router.query;
+    setActiveIndex(Number(productID) - 1);
+    if (router.query.itemID) {
+      setInfoBlockToggle(true);
+    }
+  }, [router]);
   return (
     <>
       <PageWrapper>
         <LeftSide>
-          <div className="h-6 w-full"></div>
-          {products.map((item, index) => {
-            const showChildren = index === activeIndex ? true : false;
-            return (
-              <Accordion
-                key={index}
-                item={item}
-                index={index}
-                isOpen={showChildren}
-                z_index={index * 10}
-                handleHeader={() => setActiveIndex(index)}
-                handleInfoBlock={(value) => setInfoBlockToggle(value)}
-              />
-            );
-          })}
+          <div className="space-y-1 lg:space-y-3 min-h-1/2 md:min-h-3/4">
+            {products.map((product, index) => {
+              return (
+                <Accordion
+                  key={index}
+                  product={product}
+                  index={index}
+                  isOpen={activeIndex == index ? true : false}
+                  handleHeader={(index) => setActiveIndex(index)}
+                  handleInfoBlock={(value) => setInfoBlockToggle(value)}
+                />
+              );
+            })}
+          </div>
         </LeftSide>
         <RightSide>
-          <h1>Calendar for {query_params.productID}</h1>
+          <Calendar
+            calendar_data={calendar}
+            product={product}
+            products={products.map(({ name, id }) => {
+              return {
+                id: id,
+                name: name,
+              };
+            })}
+          />
         </RightSide>
         <InfoBlock
           open={infoBlockToggle}
@@ -75,9 +83,25 @@ const Organic: NextPage<organicProps> = ({ query_params }) => {
   );
 };
 
-Organic.getInitialProps = async ({ query }) => {
-  const query_params = query;
-  return { query_params };
-};
+export async function getServerSideProps({ query }: any) {
+  const products: Product[] | null = data.conv_products;
+  const query_params = await query;
+  let { productID, itemID } = query_params;
+  const product: Product | undefined = products.find(
+    (product) => product.id == productID
+  );
+  const tempItem = itemID && product?.items.find((el) => el.id == itemID);
+  const productItem: Item | null = tempItem ? tempItem : null;
+  const calendar_data = product ? getCalendarData(product) : null;
+  return {
+    props: {
+      query_params: query_params,
+      products_list: products || null,
+      calendar: calendar_data || null,
+      product: product || null,
+      productItem: productItem || null,
+    },
+  };
+}
 
 export default Organic;

@@ -4,8 +4,6 @@ import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import Accordion from "./NavbarAccordion";
 import Searchbar from "../Searchbar";
-import Image from "next/image";
-import Burger from "../Burger";
 
 let colors = [
   "rgba(83, 94, 12, 1)",
@@ -19,6 +17,13 @@ const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [bgColor, setBgColor] = useState("#C8C7BA");
   let router = useRouter();
+  console.log(router.locale);
+
+  function changeLanguage(locales: string[], currLang: string) {
+    const curr_index = locales.indexOf(currLang);
+    const next_lang = locales.length - 1 === curr_index ? 0 : curr_index + 1;
+    return locales[next_lang];
+  }
 
   useEffect(() => {
     if (toggleMenu) setBgColor(colors[Math.floor(Math.random() * 5)]);
@@ -119,13 +124,14 @@ const Navbar = () => {
             "lg:col-start-11 "
           )}
         >
-          {router.locales?.map((locale) => (
-            <li key={locale}>
-              <Link href={router.asPath} locale={locale}>
-                <a>{locale}</a>
-              </Link>
-            </li>
-          ))}
+          <li>
+            <Link
+              href={router.asPath}
+              locale={changeLanguage(router.locales!, router.locale!)}
+            >
+              <a>{router.locale}</a>
+            </Link>
+          </li>
         </ul>
         <div
           className="cursor-pointer col-start-12 relative bg-none"

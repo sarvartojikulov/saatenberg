@@ -1,6 +1,19 @@
 import React from "react";
 import classNames from "classnames";
 import { motion } from "framer-motion";
+import { deleteQuery } from "../utils/query";
+import { useRouter } from "next/dist/client/router";
+
+const variants = {
+  hidden: {
+    translateX: "100%",
+    opacity: 0,
+  },
+  visible: {
+    translateX: 0,
+    opacity: 1,
+  },
+};
 
 interface InfoBlockProps {
   open: boolean;
@@ -12,14 +25,15 @@ const InfoBlock: React.FC<InfoBlockProps> = ({
   handleInfoBlock,
   children,
 }) => {
+  const router = useRouter();
+  console.log(router);
   return (
     <div
       className={classNames(
         "absolute w-full h-full col-span-4",
         "",
         "lg:static lg:col-start-6 lg:col-span-7",
-        { "-z-10": !open },
-        { "z-300": open }
+        { "z-100": open }
       )}
     >
       <motion.div
@@ -65,7 +79,10 @@ const InfoBlock: React.FC<InfoBlockProps> = ({
         <div className="absolute right-0 -top-4">
           <h1
             className="text-md font-bold cursor-pointer"
-            onClick={() => handleInfoBlock()}
+            onClick={() => {
+              handleInfoBlock();
+              deleteQuery(router, "itemID");
+            }}
           >
             X
           </h1>

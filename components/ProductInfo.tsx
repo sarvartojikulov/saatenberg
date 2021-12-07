@@ -1,20 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import Image from "next/image";
-
-interface Country {
-  name: string;
-  month: string[];
-}
-
-export interface Item {
-  id: number;
-  name: string;
-  origin: string;
-  quality: string;
-  color: string;
-  countries: Country[];
-}
+import { Item } from "../utils/calendar";
 
 const ProductInfo: React.FC<{ item: Item }> = ({ item }) => {
   return (

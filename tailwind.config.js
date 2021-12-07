@@ -3,20 +3,33 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontSize: {
+      "xsm": "15px",
       "sm": "20px",
       "md": "25px",
       "lg": "30px"
     },
+    minHeight: {
+      '0': '0',
+      '1/4': '25%',
+      '1/2': '50%',
+      '3/4': '75%',
+      "4/5": "85%",
+      'full': '100%',
+     },
     extend: {
       colors : {
         "products-IB": "#F2F2F2"
       },
       gridTemplateRows:{
         "wrapper-sm": "48px 1fr",
-        "wrapper-md": "56px 1fr"
+        "wrapper-md": "56px 1fr",
+        '12': 'repeat(12, minmax(0, 1fr))',
       },
       maxWidth:{
         "1440" : "1440px"
+      },
+      maxHeight: {
+        "900" : "900px"
       }
     },
     zIndex: {
