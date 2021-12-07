@@ -67,9 +67,9 @@ const Accordion: React.FC<AccordionProps> = ({
       <div
         ref={content}
         className={classNames(
-          "flex flex-col overflow-y-hidden transition-all pl-3 mt-0",
+          "flex flex-col overflow-y-hidden transition-all pl-3",
           "lg:space-y-2",
-          { "mt-3 pb-1.5": isOpen }
+          { "mt-1 md:mt-3 pb-1.5": isOpen }
         )}
         style={{
           maxHeight: `${height}px`,

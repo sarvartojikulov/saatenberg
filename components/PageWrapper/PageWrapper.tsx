@@ -6,7 +6,7 @@ const PageWrapper: React.FC = ({ children }) => {
   return (
     <div
       className={classNames(
-        "grid grid-cols-4 gap-x-4 relative bgba-blue-300 h-full w-full",
+        "grid grid-cols-4 gap-x-4 relative h-full w-full pt-12",
         "",
         "lg:grid-cols-12 lg:gap-x-5"
       )}

@@ -16,6 +16,11 @@ module.exports = {
       "4/5": "85%",
       'full': '100%',
      },
+     backgroundColor: theme => ({
+
+      ...theme('colors'),
+      "button": "rgba(0, 0, 0, 0.25)",
+     }),
     extend: {
       colors : {
         "products-IB": "#F2F2F2"
@@ -29,7 +34,10 @@ module.exports = {
         "1440" : "1440px"
       },
       maxHeight: {
-        "900" : "900px"
+        "900" : "1080px"
+      },
+      height: {
+        "544" : "544px"
       }
     },
     zIndex: {

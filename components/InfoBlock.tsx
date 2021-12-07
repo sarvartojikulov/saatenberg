@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import { deleteQuery } from "../utils/query";
 import { useRouter } from "next/dist/client/router";
+import { useScrollBlock } from "../utils/scrollBlock";
 
 const variants = {
   hidden: {
@@ -26,7 +27,11 @@ const InfoBlock: React.FC<InfoBlockProps> = ({
   children,
 }) => {
   const router = useRouter();
-  console.log(router);
+  const [blockScroll, allowScroll] = useScrollBlock();
+  useEffect(() => {
+    window.scrollTo({ top: -100 });
+    open ? blockScroll() : allowScroll();
+  }, [open]);
   return (
     <div
       className={classNames(
@@ -72,11 +77,11 @@ const InfoBlock: React.FC<InfoBlockProps> = ({
         transition={{ type: "tween" }}
         className={classNames(
           "relative h-full grid grid-cols-4 auto-rows-min gap-x-4 pt-10 pb-8",
-          "md:grid-cols-6",
-          "lg:grid-cols-7 lg:gap-x-5"
+          "md:grid-cols-8 md:gap-y-11",
+          "lg:grid-cols-7 lg:gap-x-5 lg:gap-y-0 lg:pt-0"
         )}
       >
-        <div className="absolute right-0 -top-4">
+        <div className="absolute right-0 -top-10">
           <h1
             className="text-md font-bold cursor-pointer"
             onClick={() => {

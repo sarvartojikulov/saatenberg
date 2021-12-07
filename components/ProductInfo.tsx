@@ -9,8 +9,8 @@ const ProductInfo: React.FC<{ item: Item }> = ({ item }) => {
       <div
         className={classNames(
           "col-span-full h-80 fill-current relative",
-          "",
-          "lg:col-start-2 lg:col-span-6"
+          "md:h-544",
+          "lg:col-start-2 lg:col-span-6 lg:h-80"
         )}
       >
         <Image
@@ -22,24 +22,32 @@ const ProductInfo: React.FC<{ item: Item }> = ({ item }) => {
       </div>
       <div
         className={classNames(
-          "col-span-full mt-5 text-sm space-y-4",
-          "md:text-md md:mt-11",
-          "lg:text-lg lg:col-start-2 lg:col-span-6 lg:mt-12"
+          "col-span-full mt-5 text-sm space-y-4 grid",
+          "md:col-span-4 md:text-md md:mt-0",
+          "lg:text-lg lg:col-start-2 lg:col-span-6 lg:mt-5"
         )}
       >
         {/* product info */}
-        <h1 className={classNames("font-bold capitalize", "", "")}>
-          {item.name}
-        </h1>
-        <h1 className={classNames("capitalize", "md:mt-11", "lg:mt-12")}>
+        <div className="w-full flex justify-between lg:mb-12">
+          <h1 className={classNames("font-bold capitalize", "", "")}>
+            {item.name}
+          </h1>
+          <div
+            className="h-3 w-3 self-center rounded-full"
+            style={{ backgroundColor: item.color }}
+          ></div>
+        </div>
+        <h1 className={classNames("capitalize", "md:mt-11", "lg:mt-0")}>
           Origin: East Europe/ Asia
         </h1>
-        <h1 className="capitalize">Quality / Purity: {item.quality}</h1>
+        <h1 className="capitalize">
+          Quality / Purity: <span className="normal-case">{item.quality}</span>
+        </h1>
       </div>
       <div
         className={classNames(
           "col-span-full mt-8 text-sm",
-          "md:text-md",
+          "md:col-span-4 md:text-md md:mt-0",
           "lg:text-lg lg:col-start-2 lg:col-span-6"
         )}
       >

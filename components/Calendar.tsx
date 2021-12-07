@@ -1,9 +1,7 @@
 import classNames from "classnames";
-import { motion } from "framer-motion";
 import { useRouter } from "next/dist/client/router";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { Item, keys_months, Product } from "../utils/calendar";
+import React from "react";
+import { keys_months, Product } from "../utils/calendar";
 import { updateOrAddQuery } from "../utils/query";
 import Dropdown from "./Dropdown";
 
@@ -34,8 +32,8 @@ const Calendar: React.FC<Calendar_data> = ({
         <div
           className={classNames(
             "col-span-6 col-start-2 mb-10 grid grid-cols-7 gap-x-4",
-            "md:grid-cols-8 md:col-span-full md:mb-5",
-            ""
+            "md:grid-cols-8 md:col-span-full md:mb-0",
+            "xl:mb-4"
           )}
         >
           <h1 className="text-md col-span-2 md:col-start-2">Calendar</h1>
@@ -68,7 +66,7 @@ const Calendar: React.FC<Calendar_data> = ({
         </div>
         <div
           className={classNames(
-            " h-full  grid grid-flow-col grid-cols-6 grid-rows-12 gap-x-4 gap-y-2",
+            " h-full grid grid-flow-col grid-cols-6 grid-rows-12 gap-x-4 gap-y-2",
             `col-span-${
               calendar_data && !(calendar_data.length < 6)
                 ? calendar_data.length
@@ -120,7 +118,10 @@ const Calendar: React.FC<Calendar_data> = ({
         <div className="col-span-full col-start-2 grid grid-cols-6 auto-rows-auto gap-x-4 gap-y-2 mt-2">
           {product.items.map(({ name, color, id }, index) => {
             return (
-              <div key={index} className="flex items-center col-span-2">
+              <div
+                key={index}
+                className={classNames("flex items-center col-span-3")}
+              >
                 <div
                   className="h-3 w-3 self-center rounded-full mr-1"
                   style={{ backgroundColor: color }}
@@ -140,7 +141,7 @@ const Calendar: React.FC<Calendar_data> = ({
             );
           })}
         </div>
-        <div className=" col-span-full lg:hidden md:grid grid-cols-8 gap-y-2 gap-x-4">
+        <div className=" col-span-full lg:hidden md:grid grid-cols-8 gap-y-2 gap-x-4 z-10">
           {products.map(({ name, id }, index) => {
             if (product.id !== id) {
               return (
