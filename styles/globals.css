@@ -26,3 +26,9 @@ a {
 h1 {
   line-height: 24px;
 }
+
+@layer utilities {
+  .disable-dbl-tap-zoom {
+    touch-action: manipulation;
+  }
+}
