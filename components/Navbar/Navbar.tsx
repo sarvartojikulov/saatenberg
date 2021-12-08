@@ -4,8 +4,8 @@ import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import Accordion from "./NavbarAccordion";
 import Searchbar from "../Searchbar";
-import Image from "next/image";
-import Burger from "../Burger";
+import Languages from "./Languages";
+import SearchIcon from "../Icons/SearchIcon";
 
 let colors = [
   "rgba(83, 94, 12, 1)",
@@ -112,37 +112,31 @@ const Navbar = () => {
         >
           <Searchbar />
         </div>
-        <ul
+        <div
           className={classNames(
             "hidden z-10",
             "md:block md:col-start-6 md:col-span-1",
             "lg:col-start-11 "
           )}
         >
-          {router.locales?.map((locale) => (
-            <li key={locale}>
-              <Link href={router.asPath} locale={locale}>
-                <a>{locale}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
+          <Languages />
+        </div>
         <div
-          className="cursor-pointer col-start-12 relative bg-none"
+          className="cursor-pointer col-start-12 relative bg-none bottom-0"
           style={{ zIndex: 100 }}
         >
           {/* BURGER MENU */}
-          <div className="relative sm:max-w-xl mx-auto w-4 md:w-5 lg:w-6">
+          <div className="relative sm:max-w-xl mx-auto w-5 lg:w-6">
             <nav>
               <div
-                className="text-gray-500 w-4 md:w-5 lg:w-6 h-4 md:h-5 lg:h-6 relative focus:outline-none"
+                className="text-gray-500 w-5 lg:w-6 h-5 md:h-5 lg:h-6 relative focus:outline-none"
                 onClick={() => setToggleMenu(!toggleMenu)}
               >
                 <div className="flex flex-col justify-center items-center w-full h-full absolute left-0 bottom-0">
                   <span
                     aria-hidden="true"
                     className={classNames(
-                      "block absolute h-0.5 w-full bg-current transform transition duration-500 ease-in-out",
+                      "block absolute h-0.5 w-full bg-black transform transition duration-500 ease-in-out",
                       { "rotate-45": toggleMenu },
                       { "-translate-y-2": !toggleMenu }
                     )}
@@ -150,14 +144,14 @@ const Navbar = () => {
                   <span
                     aria-hidden="true"
                     className={classNames(
-                      "block absolute  h-0.5 w-full bg-current   transform transition duration-500 ease-in-out",
+                      "block absolute  h-0.5 w-full bg-black   transform transition duration-500 ease-in-out",
                       { "opacity-0": toggleMenu }
                     )}
                   ></span>
                   <span
                     aria-hidden="true"
                     className={classNames(
-                      "block absolute  h-0.5 w-full bg-current transform  transition duration-500 ease-in-out",
+                      "block absolute  h-0.5 w-full bg-black transform  transition duration-500 ease-in-out",
                       { "-rotate-45": toggleMenu },
                       { "translate-y-2": !toggleMenu }
                     )}
@@ -180,9 +174,9 @@ const Navbar = () => {
         {/* whole screen */}
         <div
           className={classNames(
-            "h-screen grid grid-cols-1 gap-x-5 max-w-1440 mx-auto lg:px-6",
-            "",
-            "lg:grid-cols-12"
+            "h-screen grid grid-cols-1 gap-x-5 max-w-1440 mx-auto auto-rows-auto border",
+            "md:grid-cols-8",
+            "lg:grid-cols-12 lg:px-6"
           )}
         >
           {/* grid area */}
@@ -190,24 +184,37 @@ const Navbar = () => {
             onClick={() => setToggleMenu(false)}
             className={classNames(
               "hidden",
-              "",
-              " lg:block lg:col-span-5 lg:h-full"
+              "md:block md:col-span-3 col-start-1",
+              " lg:col-span-5 lg:h-full"
             )}
           >
             {/* white space */}
           </div>
           <div
             className={classNames(
-              "col-span-1 grid grid-cols-1",
-              "",
-              "lg:col-span-7 lg:grid-cols-7"
+              "col-span-1 grid grid-cols-4 gap-x-4 auto-rows-min pr-6",
+              "md:col-start-4 md:col-span-5 md:grid-cols-5",
+              "lg:col-span-7 lg:grid-cols-7 lg:pr-0"
             )}
           >
+            <div className="col-span-1 md:col-span-2 md:justify-start z-50 h-14 flex justify-end items-end ml-6">
+              <div className="h-5 w-5 rounded-full bg-conv"></div>
+            </div>
+            <div className="col-span-1 z-50 h-14 flex justify-end items-end">
+              <div className="w-5 h-5 md:w-6 md:h-6 xl:w-7 xl:h-7 ">
+                <h1>s</h1>
+              </div>
+            </div>
+            <div className="col-span-1 z-50 h-14 flex justify-end items-end">
+              <div className="">
+                <Languages />
+              </div>
+            </div>
             <div
               className={classNames(
-                "w-full h-full z-50 relative col-start-6 col-span-2 lg:text-3xl",
-                "",
-                ""
+                "w-full h-full z-50 relative mt-24 col-start-2 col-span-3 lg:text-3xl",
+                "md:col-start-3",
+                "lg:col-start-6"
               )}
             >
               {/* navbar */}
@@ -218,9 +225,9 @@ const Navbar = () => {
                     "text-white": router.asPath === "/",
                   })}
                 >
-                  <Link href="/">
-                    <a>home</a>
-                  </Link>
+                  <h1 className="text-md">
+                    <Link href="/">home</Link>
+                  </h1>
                 </li>
                 <li
                   className={classNames({
@@ -235,9 +242,11 @@ const Navbar = () => {
                     "text-white": router.asPath === "/services",
                   })}
                 >
-                  <Link href="/services">
-                    <a>services</a>
-                  </Link>
+                  <h1 className="text-md">
+                    <Link href="/services">
+                      <a>services</a>
+                    </Link>
+                  </h1>
                 </li>
                 <li
                   onClick={() => setToggleMenu(false)}
@@ -245,9 +254,11 @@ const Navbar = () => {
                     "text-white": router.asPath === "/about",
                   })}
                 >
-                  <Link href="/about">
-                    <a>About</a>
-                  </Link>
+                  <h1 className="text-md">
+                    <Link href="/about">
+                      <a>About</a>
+                    </Link>
+                  </h1>
                 </li>
                 <li
                   onClick={() => setToggleMenu(false)}
@@ -255,9 +266,11 @@ const Navbar = () => {
                     "text-white": router.asPath === "/contact",
                   })}
                 >
-                  <Link href="/contact">
-                    <a>contact</a>
-                  </Link>
+                  <h1 className="text-md">
+                    <Link href="/contact">
+                      <a>contact</a>
+                    </Link>
+                  </h1>
                 </li>
               </ul>
             </div>
