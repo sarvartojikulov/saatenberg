@@ -17,7 +17,7 @@ const Accordion: React.FC<AccordionProps> = ({ closeNavbar }) => {
       <AnimatePresence>
         <motion.div key="question" onClick={() => setIsOpen(!isOpen)}>
           <h1
-            className={classNames("cursor-pointer text-md", {
+            className={classNames("cursor-pointer text-md uppercase", {
               "text-white": router.asPath.includes("/products"),
             })}
           >

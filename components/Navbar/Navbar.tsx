@@ -5,7 +5,6 @@ import React, { useEffect, useRef, useState } from "react";
 import Accordion from "./NavbarAccordion";
 import Searchbar from "../Searchbar";
 import Languages from "./Languages";
-import SearchIcon from "../Icons/SearchIcon";
 
 let colors = [
   "rgba(83, 94, 12, 1)",
@@ -37,7 +36,7 @@ const Navbar = () => {
         className={classNames(
           "h-full grid grid-cols-4 grid-rows-1 gap-x-4 items-end",
           "md:grid-cols-8 md:text-md",
-          "lg:col-span-12 lg:text-lg relative"
+          "lg:grid-cols-12 lg:col-span-12 lg:text-lg relative"
         )}
       >
         <div
@@ -129,11 +128,11 @@ const Navbar = () => {
           <Languages />
         </div>
         <div
-          className="cursor-pointer col-start-12 relative bg-none bottom-0"
+          className="cursor-pointer col-span-1 col-start-12 relative bg-none bottom-0 z-100 right-0"
           style={{ zIndex: 100 }}
         >
           {/* BURGER MENU */}
-          <div className="relative sm:max-w-xl mx-auto w-5 lg:w-6">
+          <div className="relative sm:max-w-xl mx-auto w-5 lg:w-6 z-50">
             <nav>
               <div
                 className="text-gray-500 w-5 lg:w-6 h-5 md:h-5 lg:h-6 relative focus:outline-none"
@@ -221,7 +220,7 @@ const Navbar = () => {
               className={classNames(
                 "w-full h-full z-50 relative mt-24 col-start-2 col-span-3 lg:text-3xl",
                 "md:col-start-3",
-                "lg:col-start-6"
+                "lg:col-start-5 lg:pr-6"
               )}
             >
               {/* navbar */}
@@ -232,7 +231,7 @@ const Navbar = () => {
                     "text-white": router.asPath === "/",
                   })}
                 >
-                  <h1 className="text-md">
+                  <h1 className="text-md uppercase">
                     <Link href="/">home</Link>
                   </h1>
                 </li>
@@ -249,7 +248,7 @@ const Navbar = () => {
                     "text-white": router.asPath === "/services",
                   })}
                 >
-                  <h1 className="text-md">
+                  <h1 className="text-md uppercase">
                     <Link href="/services">
                       <a>services</a>
                     </Link>
@@ -261,7 +260,7 @@ const Navbar = () => {
                     "text-white": router.asPath === "/about",
                   })}
                 >
-                  <h1 className="text-md">
+                  <h1 className="text-md uppercase">
                     <Link href="/about">
                       <a>About</a>
                     </Link>
@@ -273,7 +272,7 @@ const Navbar = () => {
                     "text-white": router.asPath === "/contact",
                   })}
                 >
-                  <h1 className="text-md">
+                  <h1 className="text-md uppercase">
                     <Link href="/contact">
                       <a>contact</a>
                     </Link>

@@ -2,6 +2,14 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    backgroundColor: theme => ({
+
+      ...theme('colors'),
+      "productsIB": "#F2F2F2",
+      "black": "#000000",
+      "button": "rgba(0, 0, 0, 0.25)",
+     }),
+    
     fontSize: {
       "xsm": "15px",
       "sm": "20px",
@@ -16,27 +24,10 @@ module.exports = {
       "4/5": "85%",
       'full': '100%',
      },
-     backgroundColor: theme => ({
-
-      ...theme('colors'),
-      "button": "rgba(0, 0, 0, 0.25)",
-     }),
     extend: {
-      colors : {
-        "products-IB": "#F2F2F2"
-      },
       gridTemplateRows:{
-        "rows-md": "56px 1fr",
+        "wrapper-md": "56px 1fr",
         '12': 'repeat(12, minmax(0, 1fr))',
-      },
-      maxWidth:{
-        "1440" : "1440px"
-      },
-      maxHeight: {
-        "900" : "1080px"
-      },
-      height: {
-        "544" : "544px"
       },
       maxWidth:{
         "md": "720px",
@@ -44,6 +35,12 @@ module.exports = {
       },
       colors: {
         "conv": "#842854"
+      },
+      maxHeight: {
+        "900" : "1080px"
+      },
+      height: {
+        "544" : "544px"
       }
     },
     zIndex: {
