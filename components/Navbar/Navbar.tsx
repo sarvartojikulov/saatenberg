@@ -4,8 +4,6 @@ import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import Accordion from "./NavbarAccordion";
 import Searchbar from "../Searchbar";
-import Languages from "./Languages";
-import SearchIcon from "../Icons/SearchIcon";
 
 let colors = [
   "rgba(83, 94, 12, 1)",
@@ -19,6 +17,13 @@ const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [bgColor, setBgColor] = useState("#C8C7BA");
   let router = useRouter();
+  console.log(router.locale);
+
+  function changeLanguage(locales: string[], currLang: string) {
+    const curr_index = locales.indexOf(currLang);
+    const next_lang = locales.length - 1 === curr_index ? 0 : curr_index + 1;
+    return locales[next_lang];
+  }
 
   useEffect(() => {
     if (toggleMenu) setBgColor(colors[Math.floor(Math.random() * 5)]);
@@ -50,8 +55,8 @@ const Navbar = () => {
               className="w-full h-full max-h-6"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M41.9691 20.3402L49.868 0H54.9501L63.0459 20.3402H41.9691ZM48.5482 16.3819L52.3606 5.83949L56.3092 16.3819H48.5482Z"
                 fill="black"
               />
@@ -72,8 +77,8 @@ const Navbar = () => {
                 fill="black"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M143.149 14.1621C143.149 17.7702 140.458 20.4181 136.743 20.4181H130.133V0.0498245H136.743C140.37 0.0498245 143.002 2.6395 143.002 6.16029C143.002 7.67336 142.476 9.01184 141.277 10.0303C142.593 11.136 143.149 12.5326 143.149 14.1621ZM136.538 4.55993H134.813V7.90614H136.538C137.562 7.90614 138.323 7.1787 138.323 6.21849C138.323 5.25827 137.562 4.55993 136.538 4.55993ZM136.538 12.2708H134.813V15.9079H136.538C137.65 15.9079 138.469 15.1223 138.469 14.0748C138.469 13.0273 137.65 12.2708 136.538 12.2708Z"
                 fill="black"
               />
@@ -82,8 +87,8 @@ const Navbar = () => {
                 fill="black"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M181.656 6.30578C181.656 9.30282 179.93 11.2814 177.327 11.9798L182.036 15.3842V21L172.647 14.0166V20.4181H167.967V0.0498245H175.104C178.907 0.0498245 181.656 2.69769 181.656 6.30578ZM176.684 6.59675C176.684 5.34556 175.748 4.41444 174.461 4.41444H172.647V8.77907H174.461C175.748 8.77907 176.684 7.84795 176.684 6.59675Z"
                 fill="black"
               />
@@ -92,8 +97,8 @@ const Navbar = () => {
                 fill="black"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M26.2104 0L18.3115 20.3402H39.3883L31.2925 0H26.2104ZM28.703 5.83949L24.8906 16.3819H32.6516L28.703 5.83949Z"
                 fill="black"
               />
@@ -119,167 +124,174 @@ const Navbar = () => {
             "lg:col-start-11 "
           )}
         >
-          <Languages />
-        </div>
-        <div
-          className="cursor-pointer col-start-12 relative bg-none bottom-0"
-          style={{ zIndex: 100 }}
-        >
-          {/* BURGER MENU */}
-          <div className="relative sm:max-w-xl mx-auto w-5 lg:w-6">
-            <nav>
-              <div
-                className="text-gray-500 w-5 lg:w-6 h-5 md:h-5 lg:h-6 relative focus:outline-none"
-                onClick={() => setToggleMenu(!toggleMenu)}
-              >
-                <div className="flex flex-col justify-center items-center w-full h-full absolute left-0 bottom-0">
-                  <span
-                    aria-hidden="true"
-                    className={classNames(
-                      "block absolute h-0.5 w-full bg-black transform transition duration-500 ease-in-out",
-                      { "rotate-45": toggleMenu },
-                      { "-translate-y-2": !toggleMenu }
-                    )}
-                  ></span>
-                  <span
-                    aria-hidden="true"
-                    className={classNames(
-                      "block absolute  h-0.5 w-full bg-black   transform transition duration-500 ease-in-out",
-                      { "opacity-0": toggleMenu }
-                    )}
-                  ></span>
-                  <span
-                    aria-hidden="true"
-                    className={classNames(
-                      "block absolute  h-0.5 w-full bg-black transform  transition duration-500 ease-in-out",
-                      { "-rotate-45": toggleMenu },
-                      { "translate-y-2": !toggleMenu }
-                    )}
-                  ></span>
+          <li>
+            <Link
+              href={router.asPath}
+              locale={changeLanguage(router.locales!, router.locale!)}
+            >
+              <a>{router.locale}</a>
+            </Link>
+          </li>
+          <div
+            className="cursor-pointer col-start-12 relative bg-none bottom-0"
+            style={{ zIndex: 100 }}
+          >
+            {/* BURGER MENU */}
+            <div className="relative sm:max-w-xl mx-auto w-5 lg:w-6">
+              <nav>
+                <div
+                  className="text-gray-500 w-5 lg:w-6 h-5 md:h-5 lg:h-6 relative focus:outline-none"
+                  onClick={() => setToggleMenu(!toggleMenu)}
+                >
+                  <div className="flex flex-col justify-center items-center w-full h-full absolute left-0 bottom-0">
+                    <span
+                      aria-hidden="true"
+                      className={classNames(
+                        "block absolute h-0.5 w-full bg-black transform transition duration-500 ease-in-out",
+                        { "rotate-45": toggleMenu },
+                        { "-translate-y-2": !toggleMenu }
+                      )}
+                    ></span>
+                    <span
+                      aria-hidden="true"
+                      className={classNames(
+                        "block absolute  h-0.5 w-full bg-black   transform transition duration-500 ease-in-out",
+                        { "opacity-0": toggleMenu }
+                      )}
+                    ></span>
+                    <span
+                      aria-hidden="true"
+                      className={classNames(
+                        "block absolute  h-0.5 w-full bg-black transform  transition duration-500 ease-in-out",
+                        { "-rotate-45": toggleMenu },
+                        { "translate-y-2": !toggleMenu }
+                      )}
+                    ></span>
+                  </div>
                 </div>
-              </div>
-            </nav>
+              </nav>
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        className={classNames(
-          "fixed z-50 top-0 right-0 w-screen h-screen transform transition-transform translate-x-0",
-          {
-            "translate-x-full": !toggleMenu,
-            "translate-x-0": toggleMenu,
-          }
-        )}
-      >
-        {/* whole screen */}
         <div
           className={classNames(
-            "h-screen grid grid-cols-1 gap-x-5 max-w-1440 mx-auto auto-rows-auto border",
-            "md:grid-cols-8",
-            "lg:grid-cols-12 lg:px-6"
+            "fixed z-50 top-0 right-0 w-screen h-screen transform transition-transform translate-x-0",
+            {
+              "translate-x-full": !toggleMenu,
+              "translate-x-0": toggleMenu,
+            }
           )}
         >
-          {/* grid area */}
-          <div
-            onClick={() => setToggleMenu(false)}
-            className={classNames(
-              "hidden",
-              "md:block md:col-span-3 col-start-1",
-              " lg:col-span-5 lg:h-full"
-            )}
-          >
-            {/* white space */}
-          </div>
+          {/* whole screen */}
           <div
             className={classNames(
-              "col-span-1 grid grid-cols-4 gap-x-4 auto-rows-min pr-6",
-              "md:col-start-4 md:col-span-5 md:grid-cols-5",
-              "lg:col-span-7 lg:grid-cols-7 lg:pr-0"
+              "h-screen grid grid-cols-1 gap-x-5 max-w-1440 mx-auto auto-rows-auto border",
+              "md:grid-cols-8",
+              "lg:grid-cols-12 lg:px-6"
             )}
           >
-            <div className="col-span-1 md:col-span-2 md:justify-start z-50 h-14 flex justify-end items-end ml-6">
-              <div className="h-5 w-5 rounded-full bg-conv"></div>
-            </div>
-            <div className="col-span-1 z-50 h-14 flex justify-end items-end">
-              <div className="w-5 h-5 md:w-6 md:h-6 xl:w-7 xl:h-7 ">
-                <h1>s</h1>
-              </div>
-            </div>
-            <div className="col-span-1 z-50 h-14 flex justify-end items-end">
-              <div className="">
-                <Languages />
-              </div>
+            {/* grid area */}
+            <div
+              onClick={() => setToggleMenu(false)}
+              className={classNames(
+                "hidden",
+                "md:block md:col-span-3 col-start-1",
+                " lg:col-span-5 lg:h-full"
+              )}
+            >
+              {/* white space */}
             </div>
             <div
               className={classNames(
-                "w-full h-full z-50 relative mt-24 col-start-2 col-span-3 lg:text-3xl",
-                "md:col-start-3",
-                "lg:col-start-6"
+                "col-span-1 grid grid-cols-4 gap-x-4 auto-rows-min pr-6",
+                "md:col-start-4 md:col-span-5 md:grid-cols-5",
+                "lg:col-span-7 lg:grid-cols-7 lg:pr-0"
               )}
             >
-              {/* navbar */}
-              <ul className="space-y-4 text-right">
-                <li
-                  onClick={() => setToggleMenu(false)}
-                  className={classNames({
-                    "text-white": router.asPath === "/",
-                  })}
-                >
-                  <h1 className="text-md">
-                    <Link href="/">home</Link>
-                  </h1>
-                </li>
-                <li
-                  className={classNames({
-                    "text-white": router.asPath === "/products",
-                  })}
-                >
-                  <Accordion closeNavbar={() => setToggleMenu(false)} />
-                </li>
-                <li
-                  onClick={() => setToggleMenu(false)}
-                  className={classNames({
-                    "text-white": router.asPath === "/services",
-                  })}
-                >
-                  <h1 className="text-md">
-                    <Link href="/services">
-                      <a>services</a>
-                    </Link>
-                  </h1>
-                </li>
-                <li
-                  onClick={() => setToggleMenu(false)}
-                  className={classNames({
-                    "text-white": router.asPath === "/about",
-                  })}
-                >
-                  <h1 className="text-md">
-                    <Link href="/about">
-                      <a>About</a>
-                    </Link>
-                  </h1>
-                </li>
-                <li
-                  onClick={() => setToggleMenu(false)}
-                  className={classNames({
-                    "text-white": router.asPath === "/contact",
-                  })}
-                >
-                  <h1 className="text-md">
-                    <Link href="/contact">
-                      <a>contact</a>
-                    </Link>
-                  </h1>
-                </li>
-              </ul>
-            </div>
-            <div
-              style={{ backgroundColor: bgColor }}
-              className="absolute top-0 w-full h-full z-0"
-              onClick={() => console.log("y")}
-            >
-              {/* absolute background */}
+              <div className="col-span-1 md:col-span-2 md:justify-start z-50 h-14 flex justify-end items-end ml-6">
+                <div className="h-5 w-5 rounded-full bg-conv"></div>
+              </div>
+              <div className="col-span-1 z-50 h-14 flex justify-end items-end">
+                <div className="w-5 h-5 md:w-6 md:h-6 xl:w-7 xl:h-7 ">
+                  <h1>s</h1>
+                </div>
+              </div>
+              <div className="col-span-1 z-50 h-14 flex justify-end items-end">
+                <div className="">
+                  <Languages />
+                </div>
+              </div>
+              <div
+                className={classNames(
+                  "w-full h-full z-50 relative mt-24 col-start-2 col-span-3 lg:text-3xl",
+                  "md:col-start-3",
+                  "lg:col-start-6"
+                )}
+              >
+                {/* navbar */}
+                <ul className="space-y-4 text-right">
+                  <li
+                    onClick={() => setToggleMenu(false)}
+                    className={classNames({
+                      "text-white": router.asPath === "/",
+                    })}
+                  >
+                    <h1 className="text-md">
+                      <Link href="/">home</Link>
+                    </h1>
+                  </li>
+                  <li
+                    className={classNames({
+                      "text-white": router.asPath === "/products",
+                    })}
+                  >
+                    <Accordion closeNavbar={() => setToggleMenu(false)} />
+                  </li>
+                  <li
+                    onClick={() => setToggleMenu(false)}
+                    className={classNames({
+                      "text-white": router.asPath === "/services",
+                    })}
+                  >
+                    <h1 className="text-md">
+                      <Link href="/services">
+                        <a>services</a>
+                      </Link>
+                    </h1>
+                  </li>
+                  <li
+                    onClick={() => setToggleMenu(false)}
+                    className={classNames({
+                      "text-white": router.asPath === "/about",
+                    })}
+                  >
+                    <h1 className="text-md">
+                      <Link href="/about">
+                        <a>About</a>
+                      </Link>
+                    </h1>
+                  </li>
+                  <li
+                    onClick={() => setToggleMenu(false)}
+                    className={classNames({
+                      "text-white": router.asPath === "/contact",
+                    })}
+                  >
+                    <h1 className="text-md">
+                      <Link href="/contact">
+                        <a>contact</a>
+                      </Link>
+                    </h1>
+                  </li>
+                </ul>
+              </div>
+              <div
+                style={{ backgroundColor: bgColor }}
+                className="absolute top-0 w-full h-full z-0"
+                onClick={() => console.log("y")}
+              >
+                {/* absolute background */}
+              </div>
             </div>
           </div>
         </div>

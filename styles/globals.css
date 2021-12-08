@@ -6,7 +6,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  text-transform: uppercase;
 }
 
 html,
@@ -18,7 +17,6 @@ body {
 }
 body {
   overflow-x: hidden;
-  overflow-y: hidden;
 }
 a {
   color: pointer;
