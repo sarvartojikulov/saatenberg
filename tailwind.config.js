@@ -26,7 +26,17 @@ module.exports = {
         "products-IB": "#F2F2F2"
       },
       gridTemplateRows:{
-        "wrapper-md": "56px 1fr"
+        "rows-md": "56px 1fr",
+        '12': 'repeat(12, minmax(0, 1fr))',
+      },
+      maxWidth:{
+        "1440" : "1440px"
+      },
+      maxHeight: {
+        "900" : "1080px"
+      },
+      height: {
+        "544" : "544px"
       },
       maxWidth:{
         "md": "720px",
