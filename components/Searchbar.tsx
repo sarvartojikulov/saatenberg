@@ -5,7 +5,7 @@ const Searchbar = () => {
   return (
     <div
       className={classNames(
-        "h-12 w-full border rounded-3xl border-black flex justify-between items-center",
+        "hidden h-12 w-full border rounded-3xl border-black flex justify-between items-center",
         "",
         ""
       )}
@@ -28,7 +28,7 @@ const Searchbar = () => {
             cy="11.1427"
             r="9.64268"
             stroke="black"
-            stroke-width="3"
+            strokeWidth="3"
           />
           <line
             x1="7.72765"
