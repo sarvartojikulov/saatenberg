@@ -56,7 +56,7 @@ const InfoBlock: React.FC<InfoBlockProps> = ({
         }}
         transition={{ type: "tween" }}
         className={classNames(
-          "absolute -top-12 -left-6 w-screen h-screen bg-products-IB",
+          "absolute -top-12 -left-6 w-screen h-screen bg-productsIB",
           "md:-left-12 md:-top-14 ",
           "lg:w-full lg:left-auto"
         )}
@@ -76,7 +76,7 @@ const InfoBlock: React.FC<InfoBlockProps> = ({
         }}
         transition={{ type: "tween" }}
         className={classNames(
-          "relative h-full grid grid-cols-4 auto-rows-min gap-x-4 pt-10 pb-8",
+          "relative h-full grid grid-cols-4  auto-rows-min gap-x-4 pt-10 pb-8",
           "md:grid-cols-8 md:gap-y-11",
           "lg:grid-cols-7 lg:gap-x-5 lg:gap-y-0 lg:pt-0"
         )}
