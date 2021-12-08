@@ -1,8 +1,3 @@
 {
-    "title" : "Контакт",
-    "input_name": "Name",
-    "input_company": "company",
-    "input_quantity": "quantity",
-    "input_firmBID": "firm bid",
-    "input_message": "message"
+    
   }
