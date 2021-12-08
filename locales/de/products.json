@@ -1,5 +1,11 @@
 {
     "title" : "Produkten",
     "type_organic": "Organisch",
-    "type_conventional": "Konventionelle"
+    "type_conventional": "Konventionelle",
+    "contact_title" : "Kontakt",
+    "input_name": "Name",
+    "input_company": "Unternehmen",
+    "input_quantity": "Anzahl",
+    "input_firmBID": "firm bid",
+    "input_message": "Nachricht"
   }

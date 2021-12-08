@@ -1,3 +1,5 @@
+import classNames from "classnames";
+import { motion } from "framer-motion";
 import type { NextPage } from "next";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/dist/client/router";
@@ -5,12 +7,14 @@ import React, { useEffect, useMemo, useState } from "react";
 import Accordion from "../../components/Accordion";
 import Button from "../../components/Button";
 import Calendar from "../../components/Calendar";
+import ContactBlock from "../../components/ContactBlock";
 import InfoBlock from "../../components/InfoBlock";
 import LeftSide from "../../components/PageWrapper/LeftSide";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import RightSide from "../../components/PageWrapper/RightSide";
 import ProductInfo from "../../components/ProductInfo";
 import { getCalendarData, Item, Product } from "../../utils/calendar";
+import useDeviceDetect from "../../utils/useDetectDevice";
 import data from "./conventional_products.json";
 
 interface organicProps {
@@ -27,8 +31,10 @@ const Organic: NextPage<organicProps> = ({
   products_list,
 }) => {
   const [infoBlockToggle, setInfoBlockToggle] = useState<boolean>(false);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [sendRequest, setSendRequest] = useState<boolean>(false);
   const router = useRouter();
+  const { mobile, tablet, desktop } = useDeviceDetect();
   const { t } = useTranslation();
   const products: Product[] = useMemo(() => {
     return products_list;
@@ -44,7 +50,7 @@ const Organic: NextPage<organicProps> = ({
     <>
       <PageWrapper>
         <LeftSide>
-          <div className="space-y-1 lg:space-y-3 min-h-1/2 md:min-h-3/4">
+          <motion.div className="space-y-1 lg:space-y-3 min-h-1/2 md:min-h-3/4 w-full">
             {products.map((product, index) => {
               return (
                 <Accordion
@@ -57,7 +63,7 @@ const Organic: NextPage<organicProps> = ({
                 />
               );
             })}
-          </div>
+          </motion.div>
         </LeftSide>
         <RightSide>
           <Calendar
@@ -73,11 +79,27 @@ const Organic: NextPage<organicProps> = ({
         </RightSide>
         <InfoBlock
           open={infoBlockToggle}
-          handleInfoBlock={() => setInfoBlockToggle(false)}
+          handleInfoBlock={() => {
+            setInfoBlockToggle(false);
+            setSendRequest(false);
+          }}
         >
           {productItem && <ProductInfo item={productItem} />}
-          <Button />
+          {!sendRequest && (
+            <Button
+              onClick={() => {
+                if (!tablet) {
+                  setInfoBlockToggle(false);
+                }
+                setSendRequest(true);
+              }}
+            />
+          )}
         </InfoBlock>
+        <ContactBlock
+          open={sendRequest}
+          handleContactBlock={() => setSendRequest(false)}
+        />
       </PageWrapper>
     </>
   );
