@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <div
         className={classNames(
-          "w-screen h-screen container grid grid-cols-1 grid-rows-wrapper-md max-w-1440 max-h-900 relative px-6 cursor-default",
+          "w-screen h-screen container grid grid-cols-1 grid-rows-wrapper-md max-w-1440 max-h-900 relative px-6 cursor-default items-end",
           "md:grid-cols-1 md:mx-auto md:px-12",
           "lg:px-6 2xl:mx-auto"
         )}
