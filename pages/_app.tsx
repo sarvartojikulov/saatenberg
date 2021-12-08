@@ -1,12 +1,12 @@
-import "../styles/globals.css";
-import "tailwindcss/tailwind.css";
-import type { AppProps } from "next/app";
-import React, { Suspense } from "react";
-import Head from "next/head";
-import Navbar from "../components/Navbar/Navbar";
 import classNames from "classnames";
 import { AnimatePresence } from "framer-motion";
+import type { AppProps } from "next/app";
 import { useRouter } from "next/dist/client/router";
+import Head from "next/head";
+import React from "react";
+import "tailwindcss/tailwind.css";
+import Navbar from "../components/Navbar/Navbar";
+import "../styles/globals.css";
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   return (

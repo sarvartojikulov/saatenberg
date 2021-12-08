@@ -1,9 +1,6 @@
-import classNames from "classnames";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
-import router from "next/dist/client/router";
 import React from "react";
-import { deleteQuery } from "../utils/query";
 import Button from "./Button";
 import InputField from "./Inputs/InputField";
 import RichInput from "./Inputs/RichInput";

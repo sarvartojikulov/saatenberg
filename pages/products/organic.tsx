@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import { motion } from "framer-motion";
 import type { NextPage } from "next";
 import useTranslation from "next-translate/useTranslation";
@@ -34,7 +33,7 @@ const Organic: NextPage<organicProps> = ({
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [sendRequest, setSendRequest] = useState<boolean>(false);
   const router = useRouter();
-  const { mobile, tablet, desktop } = useDeviceDetect();
+  const { tablet } = useDeviceDetect();
   const { t } = useTranslation();
   const products: Product[] = useMemo(() => {
     return products_list;

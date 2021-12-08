@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
-import Accordion from "./NavbarAccordion";
+import React, { useEffect, useState } from "react";
 import Searchbar from "../Searchbar";
 import Languages from "./Languages";
+import Accordion from "./NavbarAccordion";
 
 let colors = [
   "rgba(83, 94, 12, 1)",
@@ -46,7 +46,7 @@ const Navbar = () => {
             ""
           )}
         >
-          <Link href="/">
+          <Link href="/" passHref>
             <svg
               width="205"
               height="21"
@@ -282,7 +282,7 @@ const Navbar = () => {
             </div>
             <div
               style={{ backgroundColor: bgColor }}
-              className="absolute top-0 w-full h-full z-0"
+              className="absolute top-0 left-0 md:left-auto w-full h-full z-0"
               onClick={() => console.log("y")}
             >
               {/* absolute background */}
