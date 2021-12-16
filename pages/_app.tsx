@@ -15,6 +15,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Saatenberg</title>
         <link rel="shortcut icon" href="/favicon.ico" key="shortcutIcon" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=0.86, maximum-scale=5.0, minimum-scale=0.86"
+        />
         <meta name="googlebot" content="noindex,nofollow" />
         <meta name="robots" content="noindex,nofollow" />
         <meta name="google" content="notranslate" key="notranslate" />
@@ -22,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <div
         className={classNames(
-          "w-screen h-screen overflow-y-hidden cursor-default disable-dbl-tap-zoom",
+          "w-screen h-screen cursor-default disable-dbl-tap-zoom",
           "container grid grid-cols-1 grid-rows-wrapper-md max-w-1440 max-h-900 relative px-6  items-end ",
           "md:grid-cols-1 md:mx-auto md:px-12",
           "lg:px-6 2xl:mx-auto"

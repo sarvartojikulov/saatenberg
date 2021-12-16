@@ -16,6 +16,8 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 body {
+  min-height: 100vh;
+  width: 100vw;
   overflow-x: hidden;
 }
 a {
@@ -30,5 +32,17 @@ h1 {
 @layer utilities {
   .disable-dbl-tap-zoom {
     touch-action: manipulation;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
   }
 }

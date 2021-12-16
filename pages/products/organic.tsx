@@ -13,6 +13,7 @@ import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import RightSide from "../../components/PageWrapper/RightSide";
 import ProductInfo from "../../components/ProductInfo";
 import { getCalendarData, Item, Product } from "../../utils/calendar";
+import { useScrollBlock } from "../../utils/scrollBlock";
 import useDeviceDetect from "../../utils/useDetectDevice";
 import data from "./conventional_products.json";
 
@@ -45,6 +46,10 @@ const Organic: NextPage<organicProps> = ({
       setInfoBlockToggle(true);
     }
   }, [router]);
+  const [blockScroll, allowScroll] = useScrollBlock();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [infoBlockToggle]);
   return (
     <>
       <PageWrapper>

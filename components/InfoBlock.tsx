@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { deleteQuery } from "../utils/query";
 import { useRouter } from "next/dist/client/router";
 import { useScrollBlock } from "../utils/scrollBlock";
+import useDeviceDetect from "../utils/useDetectDevice";
 
 const variants = {
   hidden: {
@@ -27,10 +28,11 @@ const InfoBlock: React.FC<InfoBlockProps> = ({
   children,
 }) => {
   const router = useRouter();
+  const { desktop } = useDeviceDetect();
   const [blockScroll, allowScroll] = useScrollBlock();
   useEffect(() => {
     window.scrollTo({ top: -100 });
-    open ? blockScroll() : allowScroll();
+    open && desktop ? blockScroll() : allowScroll();
   }, [open]);
   return (
     <div

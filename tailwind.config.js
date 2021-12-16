@@ -28,6 +28,7 @@ module.exports = {
       gridTemplateRows:{
         "navbar": "56px 1fr 1fr",
         "wrapper-md": "56px 1fr",
+        "IB-md":"1fr 152px 1fr",
         '12': 'repeat(12, minmax(0, 1fr))',
       },
       maxWidth:{
