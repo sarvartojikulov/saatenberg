@@ -16,6 +16,8 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 body {
+  min-height: 100vh;
+  width: 100vw;
   overflow-x: hidden;
 }
 a {
@@ -25,4 +27,10 @@ a {
 
 h1 {
   line-height: 24px;
+}
+
+@layer utilities {
+  .disable-dbl-tap-zoom {
+    touch-action: manipulation;
+  }
 }

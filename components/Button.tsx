@@ -11,7 +11,9 @@ const Button = (props: any) => {
       )}
     >
       <button
-        className="px-10 py-1 bg-button rounded-3xl text-sm md:text-md"
+        className={classNames(
+          "px-10 py-1 bg-button rounded-3xl text-sm md:text-md"
+        )}
         {...props}
       >
         SEND REQUEST

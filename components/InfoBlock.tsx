@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import { deleteQuery } from "../utils/query";
 import { useRouter } from "next/dist/client/router";
 import { useScrollBlock } from "../utils/scrollBlock";
+import useDeviceDetect from "../utils/useDetectDevice";
+import useWindowDimensions from "../utils/useWindowDimensions";
 
 const variants = {
   hidden: {
@@ -27,10 +29,15 @@ const InfoBlock: React.FC<InfoBlockProps> = ({
   children,
 }) => {
   const router = useRouter();
+  const { desktop } = useDeviceDetect();
   const [blockScroll, allowScroll] = useScrollBlock();
+  const [windowHeight, setWindowHeight] = useState<string>("");
+  useEffect(() => {
+    setWindowHeight(window.outerHeight + "px");
+  }, []);
   useEffect(() => {
     window.scrollTo({ top: -100 });
-    open ? blockScroll() : allowScroll();
+    open && desktop ? blockScroll() : allowScroll();
   }, [open]);
   return (
     <div
@@ -38,7 +45,8 @@ const InfoBlock: React.FC<InfoBlockProps> = ({
         "absolute w-full h-full col-span-4",
         "",
         "lg:static lg:col-start-6 lg:col-span-7",
-        { "z-100": open }
+        { "z-100": open },
+        { "-z-10": !open }
       )}
     >
       <motion.div
@@ -56,10 +64,11 @@ const InfoBlock: React.FC<InfoBlockProps> = ({
         }}
         transition={{ type: "tween" }}
         className={classNames(
-          "absolute -top-12 -left-6 w-screen h-screen bg-productsIB",
+          "absolute -top-14 -left-6 w-screen h-screen bg-productsIB",
           "md:-left-12 md:-top-14 ",
           "lg:w-full lg:left-auto"
         )}
+        style={{ height: windowHeight }}
       ></motion.div>
       <motion.div
         initial="hidden"

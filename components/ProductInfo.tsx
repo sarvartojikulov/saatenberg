@@ -8,8 +8,8 @@ const ProductInfo: React.FC<{ item: Item }> = ({ item }) => {
     <>
       <div
         className={classNames(
-          "col-span-full h-80 fill-current relative",
-          "md:h-544",
+          "col-span-full h-72 fill-current relative",
+          "md:h-96 ",
           "lg:col-start-2 lg:col-span-6 lg:h-80"
         )}
       >

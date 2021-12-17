@@ -35,7 +35,7 @@ const Home: NextPage = () => {
         )}
         transition={{ duration: 1, type: "spring" }}
       >
-        <Link href="/products/conventional">
+        <Link href="/products/organic?productID=1">
           <a>
             <img src="" alt="" />
             <h1 className={"h-full flex items-center justify-center font-bold"}>
@@ -54,7 +54,7 @@ const Home: NextPage = () => {
           "lg:col-span-6 lg:h-96 col-span-6 lg:m-0"
         )}
       >
-        <Link href="/products/organic">
+        <Link href="/products/organic?productID=1">
           <a>
             <img src="" alt="" />
             <h1 className={"h-full flex items-center justify-center font-bold"}>
