@@ -6,6 +6,8 @@ const useDeviceDetect = () => {
 	const [device, setDevice] = useState<Record<string,boolean>>({mobile: false, tablet: false, desktop: false});
 
 	useEffect(() => {
+    console.log("detecting");
+    
     const window_width = window.innerWidth;
     switch (true) {
       case window_width > 320:
