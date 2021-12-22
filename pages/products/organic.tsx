@@ -89,8 +89,9 @@ const Organic: NextPage<organicProps> = ({
           <ProductInfo item={productItem ? productItem : null} />
           {!sendRequest && (
             <Button
-              onClick={() => {
-                if (!tablet) {
+              styles="mt-6 md:mt-12"
+              handler={() => {
+                if (tablet) {
                   setInfoBlockToggle(false);
                 }
                 setSendRequest(true);
@@ -100,7 +101,10 @@ const Organic: NextPage<organicProps> = ({
         </InfoBlock>
         <ContactBlock
           open={sendRequest}
-          handleContactBlock={() => setSendRequest(false)}
+          handleContactBlock={() => {
+            setSendRequest(false);
+            setInfoBlockToggle(false);
+          }}
         />
       </PageWrapper>
     </>

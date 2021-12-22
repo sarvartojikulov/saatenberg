@@ -89,7 +89,7 @@ const InfoBlock: React.FC<InfoBlockProps> = ({
           "lg:grid-cols-7 lg:gap-x-5 lg:gap-y-0 lg:pt-0"
         )}
       >
-        <div className="absolute right-0 -top-10">
+        <div className="absolute right-1 -top-6 md:-top-7 lg:-top-[70px]">
           <h1
             className="text-md font-bold cursor-pointer"
             onClick={() => {
