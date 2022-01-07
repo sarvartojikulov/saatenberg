@@ -5,7 +5,7 @@ const InputField = (props: any) => {
   return (
     <div className={classNames("w-full h-12", "", "")}>
       <input
-        className="w-full h-full text-sm capitalize px-3 py-4 outline-none border border-black appearance-none focus:outline-none focus:shadow-outline"
+        className="w-full h-full text-sm capitalize px-3 py-4 outline-none border border-input-gray appearance-none focus:outline-none focus:shadow-outline placeholder:uppercase"
         {...props}
       />
     </div>

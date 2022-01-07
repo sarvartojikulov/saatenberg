@@ -18,7 +18,6 @@ const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [bgColor, setBgColor] = useState("#C8C7BA");
   let router = useRouter();
-  console.log(router.locale);
 
   function changeLanguage(locales: string[], currLang: string) {
     const curr_index = locales.indexOf(currLang);
@@ -28,7 +27,6 @@ const Navbar = () => {
 
   useEffect(() => {
     if (toggleMenu) setBgColor(colors[Math.floor(Math.random() * 5)]);
-    console.log(toggleMenu);
   }, [toggleMenu]);
   return (
     <>
@@ -305,7 +303,6 @@ const Navbar = () => {
             <div
               style={{ backgroundColor: bgColor }}
               className="absolute top-0 left-0 md:left-auto w-full h-full z-0"
-              onClick={() => console.log("y")}
             >
               {/* absolute background */}
             </div>
