@@ -12,6 +12,7 @@ function ArrowNaviagtion() {
   const router = useRouter();
   const { pathname } = router;
   function handleArrow() {
+    console.log(pathname);
     const indexes = directions.length - 1;
     const currentRouteIndex =
       pathname !== "/"
@@ -28,6 +29,7 @@ function ArrowNaviagtion() {
   useEffect(() => {
     const newRoutes = handleArrow();
     setLinks(newRoutes);
+    console.log(links);
   }, [router]);
   return (
     <div className="row-start-3 w-full h-full flex justify-between">
