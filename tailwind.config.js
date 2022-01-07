@@ -27,7 +27,7 @@ module.exports = {
     extend: {
       gridTemplateRows:{
         "navbar": "56px 1fr 1fr",
-        "body-wrapper": "56px 1fr",
+        "body-wrapper": "56px 1fr 72px",
         "IB-md":"1fr 152px 1fr",
         '12': 'repeat(12, minmax(0, 1fr))',
         "contactBlockRows": "48px 48px 48px 48px 1fr 48px 48px"

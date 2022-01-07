@@ -6,7 +6,6 @@ const useDeviceDetect = () => {
 	const [device, setDevice] = useState<Record<string,boolean>>({mobile: false, tablet: false, desktop: false});
 
 	useEffect(() => {
-    console.log("in device hook :::");
     const window_width = window.outerWidth;
     if(window_width > 1020){
       return setDevice(Object.assign(device,{desktop: true}))

@@ -5,6 +5,7 @@ import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import React from "react";
 import "tailwindcss/tailwind.css";
+import ArrowNaviagtion from "../components/ArrowNaviagtion";
 import Navbar from "../components/Navbar/Navbar";
 import "../styles/globals.css";
 function MyApp({ Component, pageProps }: AppProps) {
@@ -26,16 +27,17 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <div
         className={classNames(
-          "w-screen h-screen cursor-default disable-dbl-tap-zoom",
-          "container grid grid-cols-1 grid-rows-body-wrapper max-w-1440 max-h-900 relative px-6  items-end ",
+          "w-screen h-screen cursor-default disable-dbl-tap-zoom relative",
+          "container grid grid-cols-1 grid-rows-body-wrapper max-w-1440  relative px-6  items-end ",
           "md:grid-cols-1 md:mx-auto md:px-12",
-          "lg:px-6 2xl:mx-auto"
+          "lg:px-6 2xl:mx-auto lg:max-h-900"
         )}
       >
         <Navbar />
         <AnimatePresence exitBeforeEnter>
           <Component {...pageProps} key={router.route} />
         </AnimatePresence>
+        <ArrowNaviagtion />
       </div>
     </>
   );
