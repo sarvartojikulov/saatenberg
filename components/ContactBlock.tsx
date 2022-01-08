@@ -62,7 +62,7 @@ const ContactBlock: React.FC<ContactBlockProps> = ({
       animate={open ? "visible" : "hidden"}
       variants={variants}
       transition={{ type: "tween" }}
-      className="absolute top-0 left-0 h-full w-full lg:w-auto lg:col-span-4 bg-white z-100 lg:z-30 pt-12 grid grid-cols-4 grid-rows-contactBlockRows md:grid-cols-8 lg:grid-cols-5 gap-x-4 gap-y-2"
+      className="absolute top-0 left-0 h-full w-full min-h-[750px] lg:w-auto lg:col-span-4 bg-white z-100 lg:z-30 pt-12 grid grid-cols-4 grid-rows-contactBlockRows md:grid-cols-8 lg:grid-cols-5 gap-x-4 gap-y-2"
     >
       <div className="col-span-full md:col-span-6 md:col-start-2 lg:col-span-full lg:col-start-1 md:px-7 lg:p-0">
         <InputField
