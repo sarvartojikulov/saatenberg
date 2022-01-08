@@ -32,7 +32,7 @@ const contact: NextPage = () => {
           placeholder={t("contact:input_message")}
         />
       </div>
-      <Button />
+      <Button styles="" />
     </div>
   );
 };
