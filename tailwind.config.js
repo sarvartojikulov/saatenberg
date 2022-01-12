@@ -41,7 +41,7 @@ module.exports = {
         "input-gray": "rgba(0, 0, 0, 0.25)"
       },
       maxHeight: {
-        "900" : "1080px"
+        "1080" : "1080px"
       },
       height: {
         "544" : "544px"

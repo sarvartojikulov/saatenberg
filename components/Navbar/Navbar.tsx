@@ -11,7 +11,7 @@ let colors = [
   "#C8C7BA",
   "#9E4B4B",
   "#D3CF56",
-  "#E5E5E5;",
+  "#E5E5E5",
 ];
 
 const Navbar = () => {
@@ -176,9 +176,10 @@ const Navbar = () => {
         {/* whole screen */}
         <div
           className={classNames(
-            "h-screen grid grid-cols-1 gap-x-5 max-w-1440 mx-auto auto-rows-auto border",
+            "h-screen grid grid-cols-1 gap-x-5 max-w-1440 mx-auto auto-rows-auto",
             "md:grid-cols-8",
-            "lg:grid-cols-12 lg:px-6"
+            "lg:grid-cols-12 lg:px-8",
+            "xl:px-16"
           )}
         >
           {/* grid area */}
