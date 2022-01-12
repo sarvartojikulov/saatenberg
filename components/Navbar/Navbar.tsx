@@ -11,14 +11,13 @@ let colors = [
   "#C8C7BA",
   "#9E4B4B",
   "#D3CF56",
-  "#E5E5E5;",
+  "#E5E5E5",
 ];
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [bgColor, setBgColor] = useState("#C8C7BA");
   let router = useRouter();
-  console.log(router.locale);
 
   function changeLanguage(locales: string[], currLang: string) {
     const curr_index = locales.indexOf(currLang);
@@ -28,13 +27,12 @@ const Navbar = () => {
 
   useEffect(() => {
     if (toggleMenu) setBgColor(colors[Math.floor(Math.random() * 5)]);
-    console.log(toggleMenu);
   }, [toggleMenu]);
   return (
     <>
       <div
         className={classNames(
-          "h-full grid grid-cols-4 grid-rows-1 gap-x-4 items-end",
+          "h-full grid grid-cols-4 grid-rows-1 gap-x-4 items-end justify-items-end",
           "md:grid-cols-8 md:text-md",
           "lg:grid-cols-12 lg:col-span-12 lg:text-lg relative"
         )}
@@ -110,25 +108,21 @@ const Navbar = () => {
           {router.asPath === "/" ? "home" : router.asPath.split("/")[1]}
         </h1>
         <div
-          className={classNames(
-            "hidden z-10",
-            "",
-            "lg:block col-start-7 col-end-10"
-          )}
+          className={classNames("hidden z-10", "", " col-start-7 col-end-10")}
         >
           <Searchbar />
         </div>
         <div
           className={classNames(
             "hidden z-10",
-            "md:block md:col-start-6 md:col-span-1",
+            "md:block md:col-start-7 md:col-span-1",
             "lg:col-start-11 "
           )}
         >
           <Languages />
         </div>
         <div
-          className="cursor-pointer col-span-1 col-start-12 relative bg-none bottom-0 z-100 right-0"
+          className="cursor-pointer col-span-1 md:col-start-8 lg:col-start-12 relative bg-none bottom-0 z-100 right-0"
           style={{ zIndex: 100 }}
         >
           {/* BURGER MENU */}
@@ -180,9 +174,10 @@ const Navbar = () => {
         {/* whole screen */}
         <div
           className={classNames(
-            "h-screen grid grid-cols-1 gap-x-5 max-w-1440 mx-auto auto-rows-auto border",
+            "h-screen grid grid-cols-1 gap-x-5 max-w-1440 mx-auto auto-rows-auto",
             "md:grid-cols-8",
-            "lg:grid-cols-12 lg:px-6"
+            "lg:grid-cols-12 lg:px-8",
+            "xl:px-16"
           )}
         >
           {/* grid area */}
@@ -191,22 +186,22 @@ const Navbar = () => {
             className={classNames(
               "hidden",
               "md:block md:col-span-3 col-start-1",
-              " lg:col-span-5 lg:h-full"
+              "lg:col-span-6 lg:h-full"
             )}
           >
             {/* white space */}
           </div>
           <div
             className={classNames(
-              "col-span-1 grid grid-cols-4 gap-x-4 auto-rows-min pr-6",
-              "md:col-start-4 md:col-span-5 md:grid-cols-5",
-              "lg:col-span-7 lg:grid-cols-7 lg:pr-0"
+              "col-span-1 grid grid-cols-4 gap-x-4 grid-rows-navbar pr-6",
+              "md:col-start-4 md:col-span-5 md:grid-cols-5 md:pr-12",
+              "lg:col-span-6 lg:grid-cols-6 lg:pr-0"
             )}
           >
-            <div className="col-span-1 md:col-span-2 md:justify-start z-50 h-14 flex justify-end items-end ml-6">
+            <div className="col-span-1 md:col-span-1 justify-self-end z-50 h-14 flex justify-end items-end ml-6">
               <div className="h-5 w-5 rounded-full bg-conv"></div>
             </div>
-            <div className="col-span-1 z-50 h-14 flex justify-end items-end">
+            <div className="col-span-1 lg:col-span-3 justify-self-end z-50 h-14 flex justify-end items-end">
               <div className="w-5 h-5 md:w-6 md:h-6 xl:w-7 xl:h-7 ">
                 <h1>s</h1>
               </div>
@@ -218,9 +213,9 @@ const Navbar = () => {
             </div>
             <div
               className={classNames(
-                "w-full h-full z-50 relative mt-24 col-start-2 col-span-3 lg:text-3xl",
+                "w-full h-full z-50 relative mt-24 col-start-2 col-span-3 lg:text-3xl flex flex-col justify-between",
                 "md:col-start-3",
-                "lg:col-start-5 lg:pr-6"
+                "lg:col-start-4 lg:pr-0"
               )}
             >
               {/* navbar */}
@@ -280,10 +275,35 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
+            <div className="col-span-2 col-start-3 md:col-start-4 lg:col-start-5 mb-4 z-50 flex flex-col justify-end items-end list-none space-y-4">
+              <li
+                onClick={() => setToggleMenu(false)}
+                className={classNames({
+                  "text-white mt-full ": router.asPath === "/careers",
+                })}
+              >
+                <h1 className="text-md uppercase">
+                  <Link href="/about">
+                    <a>Careers</a>
+                  </Link>
+                </h1>
+              </li>
+              <li
+                onClick={() => setToggleMenu(false)}
+                className={classNames({
+                  "text-white": router.asPath === "/impressum",
+                })}
+              >
+                <h1 className="text-md uppercase">
+                  <Link href="/about">
+                    <a>Impressum</a>
+                  </Link>
+                </h1>
+              </li>
+            </div>
             <div
               style={{ backgroundColor: bgColor }}
               className="absolute top-0 left-0 md:left-auto w-full h-full z-0"
-              onClick={() => console.log("y")}
             >
               {/* absolute background */}
             </div>

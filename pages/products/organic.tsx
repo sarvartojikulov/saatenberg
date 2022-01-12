@@ -33,11 +33,12 @@ const Organic: NextPage<organicProps> = ({
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [sendRequest, setSendRequest] = useState<boolean>(false);
   const router = useRouter();
-  const { tablet } = useDeviceDetect();
+  const { desktop } = useDeviceDetect();
   const { t } = useTranslation();
   const products: Product[] = useMemo(() => {
     return products_list;
   }, []);
+  1;
   useEffect(() => {
     const { productID } = router.query;
     setActiveIndex(Number(productID) - 1);
@@ -45,6 +46,9 @@ const Organic: NextPage<organicProps> = ({
       setInfoBlockToggle(true);
     }
   }, [router]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [infoBlockToggle]);
   return (
     <>
       <PageWrapper>
@@ -83,11 +87,12 @@ const Organic: NextPage<organicProps> = ({
             setSendRequest(false);
           }}
         >
-          {productItem && <ProductInfo item={productItem} />}
+          <ProductInfo item={productItem ? productItem : null} />
           {!sendRequest && (
             <Button
-              onClick={() => {
-                if (!tablet) {
+              styles="mt-6 md:mt-12"
+              handler={() => {
+                if (!desktop) {
                   setInfoBlockToggle(false);
                 }
                 setSendRequest(true);
@@ -97,7 +102,11 @@ const Organic: NextPage<organicProps> = ({
         </InfoBlock>
         <ContactBlock
           open={sendRequest}
-          handleContactBlock={() => setSendRequest(false)}
+          productName={productItem ? productItem.name : "not selected"}
+          closeAll={() => {
+            setSendRequest(false);
+            setInfoBlockToggle(false);
+          }}
         />
       </PageWrapper>
     </>

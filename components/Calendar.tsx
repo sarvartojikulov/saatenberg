@@ -141,7 +141,7 @@ const Calendar: React.FC<Calendar_data> = ({
             );
           })}
         </div>
-        <div className=" col-span-full lg:hidden md:grid grid-cols-8 gap-y-2 gap-x-4 z-10">
+        <div className="hidden col-span-full lg:hidden md:griad grid-cols-8 gap-y-2 gap-x-4 z-10">
           {products.map(({ name, id }, index) => {
             if (product.id !== id) {
               return (

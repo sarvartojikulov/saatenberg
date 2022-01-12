@@ -1,20 +1,26 @@
 import classNames from "classnames";
 import React from "react";
 
-const Button = (props: any) => {
+interface ButtonProps {
+  styles: string;
+  handler?: () => void;
+}
+
+const Button: React.FC<ButtonProps> = ({ styles, handler }) => {
   return (
     <div
       className={classNames(
-        "col-span-4 mx-auto mt-6",
-        "md:mt-12 md:col-span-full",
-        "lg:mx-0 lg:col-start-2"
+        "col-span-4 mx-auto",
+        "md:col-span-full",
+        "lg:mx-0 lg:col-start-2",
+        styles
       )}
     >
       <button
         className={classNames(
           "px-10 py-1 bg-button rounded-3xl text-sm md:text-md"
         )}
-        {...props}
+        onClick={handler}
       >
         SEND REQUEST
       </button>

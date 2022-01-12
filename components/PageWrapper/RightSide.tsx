@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import { useRouter } from "next/dist/client/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const variants = {
   hidden: {

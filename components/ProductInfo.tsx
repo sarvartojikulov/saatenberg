@@ -1,15 +1,17 @@
 import classNames from "classnames";
-import React from "react";
 import Image from "next/image";
+import React from "react";
 import { Item } from "../utils/calendar";
 
-const ProductInfo: React.FC<{ item: Item }> = ({ item }) => {
+const ProductInfo: React.FC<{
+  item: Item | null;
+}> = ({ item }) => {
   return (
     <>
       <div
         className={classNames(
-          "col-span-full h-80 fill-current relative",
-          "md:h-544",
+          "col-span-full h-72 fill-current relative",
+          "md:h-96 ",
           "lg:col-start-2 lg:col-span-6 lg:h-80"
         )}
       >
@@ -30,18 +32,18 @@ const ProductInfo: React.FC<{ item: Item }> = ({ item }) => {
         {/* product info */}
         <div className="w-full flex justify-between lg:mb-12">
           <h1 className={classNames("font-bold capitalize", "", "")}>
-            {item.name}
+            {item?.name}
           </h1>
           <div
             className="h-3 w-3 self-center rounded-full"
-            style={{ backgroundColor: item.color }}
+            style={{ backgroundColor: item?.color }}
           ></div>
         </div>
         <h1 className={classNames("capitalize", "md:mt-11", "lg:mt-0")}>
           Origin: East Europe/ Asia
         </h1>
         <h1 className="capitalize">
-          Quality / Purity: <span className="normal-case">{item.quality}</span>
+          Quality / Purity: <span className="normal-case">{item?.quality}</span>
         </h1>
       </div>
       <div
@@ -54,7 +56,7 @@ const ProductInfo: React.FC<{ item: Item }> = ({ item }) => {
         {/* CALENDAR */}
         <div className="lg:hidden space-y-4">
           <h1 className={classNames("font-bold capitalize", "")}>harvest</h1>
-          {item.countries &&
+          {item?.countries &&
             item.countries.map(({ name, month }, index) => {
               return (
                 <div className="flex" key={index}>
