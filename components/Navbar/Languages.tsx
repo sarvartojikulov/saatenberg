@@ -10,7 +10,7 @@ const Languages: React.FC = () => {
     return locales[next_lang];
   }
   return (
-    <h1 className="text-md uppercase">
+    <h1 className="text-md uppercase md:leading-[18px]">
       <Link
         href={router.asPath}
         locale={changeLanguage(router.locales!, router.locale!)}

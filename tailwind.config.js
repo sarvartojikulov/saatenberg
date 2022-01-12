@@ -9,7 +9,6 @@ module.exports = {
       "black": "#000000",
       "button": "rgba(0, 0, 0, 0.25)",
      }),
-    
     fontSize: {
       "xsm": "15px",
       "sm": "20px",
@@ -64,7 +63,8 @@ module.exports = {
     }
   },
   variants: {
-    extend: {},
+    extend: {
+    },
   },
   plugins: [],
 }

@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { useScrollBlock } from "../../utils/scrollBlock";
 import Searchbar from "../Searchbar";
 import Languages from "./Languages";
 import Accordion from "./NavbarAccordion";
@@ -18,15 +19,17 @@ const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [bgColor, setBgColor] = useState("#C8C7BA");
   let router = useRouter();
-
-  function changeLanguage(locales: string[], currLang: string) {
-    const curr_index = locales.indexOf(currLang);
-    const next_lang = locales.length - 1 === curr_index ? 0 : curr_index + 1;
-    return locales[next_lang];
-  }
-
+  const [blockScroll, allowScroll] = useScrollBlock();
   useEffect(() => {
-    if (toggleMenu) setBgColor(colors[Math.floor(Math.random() * 5)]);
+    const randomNum = Math.floor(Math.random() * 5);
+    console.log(randomNum);
+
+    if (toggleMenu) {
+      setBgColor(colors[randomNum]);
+      blockScroll();
+    } else {
+      allowScroll();
+    }
   }, [toggleMenu]);
   return (
     <>
@@ -39,74 +42,87 @@ const Navbar = () => {
       >
         <div
           className={classNames(
-            "col-span-3 cursor-pointer font-bold w-40 h-4",
-            "md:col-span-2 md:h-auto md:w-full",
-            ""
+            "col-span-3 md:col-span-4 lg:col-span-5 flex justify-self-start items-end h-full"
           )}
         >
-          <Link href="/" passHref>
-            <svg
-              width="205"
-              height="21"
-              viewBox="0 0 205 21"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full h-full max-h-6"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M41.9691 20.3402L49.868 0H54.9501L63.0459 20.3402H41.9691ZM48.5482 16.3819L52.3606 5.83949L56.3092 16.3819H48.5482Z"
-                fill="black"
-              />
-              <path
-                d="M11.2318 13.7547C11.2318 17.9739 8.33608 20.4181 4.00717 20.4181H0V15.9079H3.56843C5.29414 15.9079 6.55186 14.5986 6.55186 12.7945V7.46968C6.55186 2.90138 9.44755 0.0498245 14.1567 0.0498245H17.7251V4.55993H14.2152C12.3432 4.55993 11.0855 5.86932 11.2318 7.67336V13.7547Z"
-                fill="black"
-              />
-              <path
-                d="M75.3313 4.55993V20.4181H70.6514V4.55993H63.7778V0.0498245H82.2049V4.55993H75.3313Z"
-                fill="black"
-              />
-              <path
-                d="M100.4 15.9079V20.4181H87.4423V0.0498245H100.4V4.55993H92.1222V7.90614H98.9373V12.4162H92.1222V15.9079H100.4Z"
-                fill="black"
-              />
-              <path
-                d="M111.068 4.55993V20.4181H106.388V0.0498245H115.894C120.457 0.0498245 123.645 3.22145 123.645 7.76065V20.4181H118.965V8.25531C118.965 6.1021 117.474 4.55993 115.455 4.55993H111.068Z"
-                fill="black"
-              />
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M143.149 14.1621C143.149 17.7702 140.458 20.4181 136.743 20.4181H130.133V0.0498245H136.743C140.37 0.0498245 143.002 2.6395 143.002 6.16029C143.002 7.67336 142.476 9.01184 141.277 10.0303C142.593 11.136 143.149 12.5326 143.149 14.1621ZM136.538 4.55993H134.813V7.90614H136.538C137.562 7.90614 138.323 7.1787 138.323 6.21849C138.323 5.25827 137.562 4.55993 136.538 4.55993ZM136.538 12.2708H134.813V15.9079H136.538C137.65 15.9079 138.469 15.1223 138.469 14.0748C138.469 13.0273 137.65 12.2708 136.538 12.2708Z"
-                fill="black"
-              />
-              <path
-                d="M161.979 15.9079V20.4181H149.021V0.0498245H161.979V4.55993H153.701V7.90614H160.516V12.4162H153.701V15.9079H161.979Z"
-                fill="black"
-              />
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M181.656 6.30578C181.656 9.30282 179.93 11.2814 177.327 11.9798L182.036 15.3842V21L172.647 14.0166V20.4181H167.967V0.0498245H175.104C178.907 0.0498245 181.656 2.69769 181.656 6.30578ZM176.684 6.59675C176.684 5.34556 175.748 4.41444 174.461 4.41444H172.647V8.77907H174.461C175.748 8.77907 176.684 7.84795 176.684 6.59675Z"
-                fill="black"
-              />
-              <path
-                d="M205 8.05163V20.4181H197.249C191.37 20.4181 186.69 15.8497 186.69 10.2339C186.69 4.61813 191.37 0.0498245 197.249 0.0498245H205V4.55993H197.395C194.207 4.55993 191.721 7.12051 191.721 10.2339C191.721 13.3474 194.207 15.9079 197.395 15.9079H200.32V12.2708H195.026V8.05163H205Z"
-                fill="black"
-              />
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M26.2104 0L18.3115 20.3402H39.3883L31.2925 0H26.2104ZM28.703 5.83949L24.8906 16.3819H32.6516L28.703 5.83949Z"
-                fill="black"
-              />
-            </svg>
-          </Link>
+          <div
+            className={classNames(
+              "cursor-pointer font-bold w-44 h-5 pt-0.5 ",
+              "md:h-auto md:w-full md:mr-4",
+              "lg:p-0 lg:w-52 lg:h-5"
+            )}
+          >
+            <Link href="/" passHref>
+              <svg
+                width="205"
+                height="21"
+                viewBox="0 0 205 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-full h-full max-h-6"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M41.9691 20.3402L49.868 0H54.9501L63.0459 20.3402H41.9691ZM48.5482 16.3819L52.3606 5.83949L56.3092 16.3819H48.5482Z"
+                  fill="black"
+                />
+                <path
+                  d="M11.2318 13.7547C11.2318 17.9739 8.33608 20.4181 4.00717 20.4181H0V15.9079H3.56843C5.29414 15.9079 6.55186 14.5986 6.55186 12.7945V7.46968C6.55186 2.90138 9.44755 0.0498245 14.1567 0.0498245H17.7251V4.55993H14.2152C12.3432 4.55993 11.0855 5.86932 11.2318 7.67336V13.7547Z"
+                  fill="black"
+                />
+                <path
+                  d="M75.3313 4.55993V20.4181H70.6514V4.55993H63.7778V0.0498245H82.2049V4.55993H75.3313Z"
+                  fill="black"
+                />
+                <path
+                  d="M100.4 15.9079V20.4181H87.4423V0.0498245H100.4V4.55993H92.1222V7.90614H98.9373V12.4162H92.1222V15.9079H100.4Z"
+                  fill="black"
+                />
+                <path
+                  d="M111.068 4.55993V20.4181H106.388V0.0498245H115.894C120.457 0.0498245 123.645 3.22145 123.645 7.76065V20.4181H118.965V8.25531C118.965 6.1021 117.474 4.55993 115.455 4.55993H111.068Z"
+                  fill="black"
+                />
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M143.149 14.1621C143.149 17.7702 140.458 20.4181 136.743 20.4181H130.133V0.0498245H136.743C140.37 0.0498245 143.002 2.6395 143.002 6.16029C143.002 7.67336 142.476 9.01184 141.277 10.0303C142.593 11.136 143.149 12.5326 143.149 14.1621ZM136.538 4.55993H134.813V7.90614H136.538C137.562 7.90614 138.323 7.1787 138.323 6.21849C138.323 5.25827 137.562 4.55993 136.538 4.55993ZM136.538 12.2708H134.813V15.9079H136.538C137.65 15.9079 138.469 15.1223 138.469 14.0748C138.469 13.0273 137.65 12.2708 136.538 12.2708Z"
+                  fill="black"
+                />
+                <path
+                  d="M161.979 15.9079V20.4181H149.021V0.0498245H161.979V4.55993H153.701V7.90614H160.516V12.4162H153.701V15.9079H161.979Z"
+                  fill="black"
+                />
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M181.656 6.30578C181.656 9.30282 179.93 11.2814 177.327 11.9798L182.036 15.3842V21L172.647 14.0166V20.4181H167.967V0.0498245H175.104C178.907 0.0498245 181.656 2.69769 181.656 6.30578ZM176.684 6.59675C176.684 5.34556 175.748 4.41444 174.461 4.41444H172.647V8.77907H174.461C175.748 8.77907 176.684 7.84795 176.684 6.59675Z"
+                  fill="black"
+                />
+                <path
+                  d="M205 8.05163V20.4181H197.249C191.37 20.4181 186.69 15.8497 186.69 10.2339C186.69 4.61813 191.37 0.0498245 197.249 0.0498245H205V4.55993H197.395C194.207 4.55993 191.721 7.12051 191.721 10.2339C191.721 13.3474 194.207 15.9079 197.395 15.9079H200.32V12.2708H195.026V8.05163H205Z"
+                  fill="black"
+                />
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M26.2104 0L18.3115 20.3402H39.3883L31.2925 0H26.2104ZM28.703 5.83949L24.8906 16.3819H32.6516L28.703 5.83949Z"
+                  fill="black"
+                />
+              </svg>
+            </Link>
+          </div>
+          <h1
+            className={classNames(
+              "hidden uppercase justify-self-start",
+              "",
+              "lg:block col-span-2 lg:leading-[18px]"
+            )}
+            style={{ color: "rgba(0, 0, 0, 0.15)" }}
+          >
+            {router.asPath === "/" ? "home" : router.asPath.split("/")[1]}
+          </h1>
         </div>
-        <h1 className={classNames("hidden ", "", "lg:block col-span-2")}>
-          {router.asPath === "/" ? "home" : router.asPath.split("/")[1]}
-        </h1>
         <div
           className={classNames("hidden z-10", "", " col-start-7 col-end-10")}
         >
@@ -122,7 +138,7 @@ const Navbar = () => {
           <Languages />
         </div>
         <div
-          className="cursor-pointer col-span-1 md:col-start-8 lg:col-start-12 relative bg-none bottom-0 z-100 right-0"
+          className="cursor-pointer col-span-1 md:col-start-8 lg:col-start-12 relative bg-none bottom-0 z-100 right-0 lg:top-0.5"
           style={{ zIndex: 100 }}
         >
           {/* BURGER MENU */}
