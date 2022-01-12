@@ -78,19 +78,22 @@ const services: NextPage = () => {
       className={classNames(
         "w-full h-full grid grid-cols-4 auto-rows-min gap-x-4 gap-y-6 pt-10",
         "md:grid-cols-8 md:gap-y-12",
-        "lg:grid-cols-12"
+        "lg:grid-cols-12 lg:grid-rows-1",
+        "xl:pb-4 xl:pt-24",
+        "2xl:max-h-[616px] self-start"
       )}
     >
       <div
         className={classNames(
           "col-span-full h-72 relative",
           "md:h-544",
-          "lg:col-span-9"
+          "lg:col-span-9",
+          "xl:h-full"
         )}
         style={{ scrollSnapAlign: "start" }}
       >
         <div className="w-full h-full bg-yellow-300"></div>
-        <ul className="absolute top-0 flex h-full w-full justify-between items-center z-20">
+        <ul className="absolute top-0 flex h-full w-full justify-between items-center z-20 ">
           <li
             className="cursor-pointer"
             onClick={() => {
